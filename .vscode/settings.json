@@ -66,5 +66,7 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj",
     },
-    "dotnet.defaultSolution": "BlameOff.sln"
+    "dotnet.defaultSolution": "BlameOff.sln",
+    "editor.fontSize": 20,
+    "editor.lineHeight": 1.25
 }

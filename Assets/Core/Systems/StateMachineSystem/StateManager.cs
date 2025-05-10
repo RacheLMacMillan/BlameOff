@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 
 public abstract class StateManager<EState> : MonoBehaviour where EState : Enum
 {

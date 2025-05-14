@@ -1,6 +1,6 @@
 public enum EPlayerMovementStates
 {
-	Standing,
+	Idle,
 	Walking,
 	Sprinting,
 	Crouching,

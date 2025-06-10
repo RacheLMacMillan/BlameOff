@@ -1,9 +1,4 @@
-public class IMovable
+public interface IMovable
 {
-	public float MoveSpeed { get; private set; }
-	
-	public void Move()
-	{
-		
-	}
+	public void Move();
 }

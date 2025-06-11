@@ -4,9 +4,13 @@ public class PlayerInput : MonoBehaviour
 {
 	private InputMap _inputMap;
 
+	private PlayerMover PlayerMover;
+
 	private void Awake()
 	{
 		_inputMap = new InputMap();
+
+		PlayerMover = GetComponent<PlayerMover>();
 	}
 
 	private void OnEnable() => _inputMap.Enable();
@@ -15,11 +19,8 @@ public class PlayerInput : MonoBehaviour
 
 	private void Update()
 	{
-		Move(_inputMap.OnFoot.Move.ReadValue<Vector2>());
-	}
+		Vector3 scaledDirection = new Vector3(_inputMap.OnFoot.Move.ReadValue<Vector2>().x, 0, _inputMap.OnFoot.Move.ReadValue<Vector2>().y);
 
-    private void Move(Vector2 direction)
-    {
-        Debug.Log($"Player was moves by {direction}");
-    }
+		PlayerMover.MoveByTransformDirection(scaledDirection);
+	}
 }

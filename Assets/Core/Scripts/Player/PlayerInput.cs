@@ -19,8 +19,9 @@ public class PlayerInput : MonoBehaviour
 
 	private void Update()
 	{
-		Vector3 scaledDirection = new Vector3(_inputMap.OnFoot.Move.ReadValue<Vector2>().x, 0, _inputMap.OnFoot.Move.ReadValue<Vector2>().y);
+		Vector2 moveDirection = _inputMap.OnFoot.Move.ReadValue<Vector2>();
+		Vector3 correctedMoveDirection = new Vector3(moveDirection.x, 0, moveDirection.y);
 
-		PlayerMover.MoveByTransformDirection(scaledDirection);
+		PlayerMover.MoveByTransformDirection(correctedMoveDirection);
 	}
 }

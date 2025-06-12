@@ -6,6 +6,11 @@ public class PlayerMover : MonoBehaviour, IInitializable, IMovable
 	
 	private CharacterController _characterController;
 
+	private void Awake()
+	{
+		Initialize();
+	}
+	
 	public void Initialize()
 	{
 		_characterController = GetComponent<CharacterController>();
@@ -13,14 +18,14 @@ public class PlayerMover : MonoBehaviour, IInitializable, IMovable
 
 	public void MoveByDirection(Vector2 direction)
 	{
-		_characterController.Move(transform.TransformDirection(direction * MoveSpeed * Time.deltaTime));
+		// _characterController.Move(transform.TransformDirection(direction * MoveSpeed * Time.deltaTime));
 	}
 	
 	public void MoveByTransformDirection(Vector3 direction)
 	{		
-		// Vector3 scaledMoveDirection = direction * ScaleMoveSpeed();
+		Vector3 scaledMoveDirection = direction * MoveSpeed * Time.deltaTime;
 		
-		// _characterController.Move(transform.TransformDirection(scaledMoveDirection));
+		_characterController.Move(transform.TransformDirection(scaledMoveDirection));
 	}
 	
 	public void MoveToTheTarget(GameObject target)

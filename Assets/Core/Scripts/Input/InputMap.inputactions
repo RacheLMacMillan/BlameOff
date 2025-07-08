@@ -2,13 +2,22 @@
     "name": "InputMap",
     "maps": [
         {
-            "name": "OnFoot",
+            "name": "PlayScene",
             "id": "53435305-d871-483d-8585-84207abb7f5b",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Value",
                     "id": "2b27551e-2532-49ff-8527-f9b34cba8bba",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "f3e1b3f3-5d55-47d2-a67e-95b594ef4590",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -70,6 +79,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "58c5be3c-84bf-4fd0-ac87-4cfc6e8eabf6",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

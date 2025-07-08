@@ -88,13 +88,22 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     ""name"": ""InputMap"",
     ""maps"": [
         {
-            ""name"": ""OnFoot"",
+            ""name"": ""PlayScene"",
             ""id"": ""53435305-d871-483d-8585-84207abb7f5b"",
             ""actions"": [
                 {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""2b27551e-2532-49ff-8527-f9b34cba8bba"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""f3e1b3f3-5d55-47d2-a67e-95b594ef4590"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -156,6 +165,17 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""58c5be3c-84bf-4fd0-ac87-4cfc6e8eabf6"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -179,14 +199,15 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // OnFoot
-        m_OnFoot = asset.FindActionMap("OnFoot", throwIfNotFound: true);
-        m_OnFoot_Move = m_OnFoot.FindAction("Move", throwIfNotFound: true);
+        // PlayScene
+        m_PlayScene = asset.FindActionMap("PlayScene", throwIfNotFound: true);
+        m_PlayScene_Move = m_PlayScene.FindAction("Move", throwIfNotFound: true);
+        m_PlayScene_Look = m_PlayScene.FindAction("Look", throwIfNotFound: true);
     }
 
     ~@InputMap()
     {
-        UnityEngine.Debug.Assert(!m_OnFoot.enabled, "This will cause a leak and performance issues, InputMap.OnFoot.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_PlayScene.enabled, "This will cause a leak and performance issues, InputMap.PlayScene.Disable() has not been called.");
     }
 
     /// <summary>
@@ -259,29 +280,34 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // OnFoot
-    private readonly InputActionMap m_OnFoot;
-    private List<IOnFootActions> m_OnFootActionsCallbackInterfaces = new List<IOnFootActions>();
-    private readonly InputAction m_OnFoot_Move;
+    // PlayScene
+    private readonly InputActionMap m_PlayScene;
+    private List<IPlaySceneActions> m_PlaySceneActionsCallbackInterfaces = new List<IPlaySceneActions>();
+    private readonly InputAction m_PlayScene_Move;
+    private readonly InputAction m_PlayScene_Look;
     /// <summary>
-    /// Provides access to input actions defined in input action map "OnFoot".
+    /// Provides access to input actions defined in input action map "PlayScene".
     /// </summary>
-    public struct OnFootActions
+    public struct PlaySceneActions
     {
         private @InputMap m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public OnFootActions(@InputMap wrapper) { m_Wrapper = wrapper; }
+        public PlaySceneActions(@InputMap wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "OnFoot/Move".
+        /// Provides access to the underlying input action "PlayScene/Move".
         /// </summary>
-        public InputAction @Move => m_Wrapper.m_OnFoot_Move;
+        public InputAction @Move => m_Wrapper.m_PlayScene_Move;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayScene/Look".
+        /// </summary>
+        public InputAction @Look => m_Wrapper.m_PlayScene_Look;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_OnFoot; }
+        public InputActionMap Get() { return m_Wrapper.m_PlayScene; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -289,9 +315,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="OnFootActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="PlaySceneActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(OnFootActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(PlaySceneActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -299,14 +325,17 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="OnFootActions" />
-        public void AddCallbacks(IOnFootActions instance)
+        /// <seealso cref="PlaySceneActions" />
+        public void AddCallbacks(IPlaySceneActions instance)
         {
-            if (instance == null || m_Wrapper.m_OnFootActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_OnFootActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_PlaySceneActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PlaySceneActionsCallbackInterfaces.Add(instance);
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @Look.started += instance.OnLook;
+            @Look.performed += instance.OnLook;
+            @Look.canceled += instance.OnLook;
         }
 
         /// <summary>
@@ -315,21 +344,24 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="OnFootActions" />
-        private void UnregisterCallbacks(IOnFootActions instance)
+        /// <seealso cref="PlaySceneActions" />
+        private void UnregisterCallbacks(IPlaySceneActions instance)
         {
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @Look.started -= instance.OnLook;
+            @Look.performed -= instance.OnLook;
+            @Look.canceled -= instance.OnLook;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="OnFootActions.UnregisterCallbacks(IOnFootActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="PlaySceneActions.UnregisterCallbacks(IPlaySceneActions)" />.
         /// </summary>
-        /// <seealso cref="OnFootActions.UnregisterCallbacks(IOnFootActions)" />
-        public void RemoveCallbacks(IOnFootActions instance)
+        /// <seealso cref="PlaySceneActions.UnregisterCallbacks(IPlaySceneActions)" />
+        public void RemoveCallbacks(IPlaySceneActions instance)
         {
-            if (m_Wrapper.m_OnFootActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_PlaySceneActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -339,21 +371,21 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="OnFootActions.AddCallbacks(IOnFootActions)" />
-        /// <seealso cref="OnFootActions.RemoveCallbacks(IOnFootActions)" />
-        /// <seealso cref="OnFootActions.UnregisterCallbacks(IOnFootActions)" />
-        public void SetCallbacks(IOnFootActions instance)
+        /// <seealso cref="PlaySceneActions.AddCallbacks(IPlaySceneActions)" />
+        /// <seealso cref="PlaySceneActions.RemoveCallbacks(IPlaySceneActions)" />
+        /// <seealso cref="PlaySceneActions.UnregisterCallbacks(IPlaySceneActions)" />
+        public void SetCallbacks(IPlaySceneActions instance)
         {
-            foreach (var item in m_Wrapper.m_OnFootActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_PlaySceneActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_OnFootActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_PlaySceneActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="OnFootActions" /> instance referencing this action map.
+    /// Provides a new <see cref="PlaySceneActions" /> instance referencing this action map.
     /// </summary>
-    public OnFootActions @OnFoot => new OnFootActions(this);
+    public PlaySceneActions @PlayScene => new PlaySceneActions(this);
     private int m_KeyboardAndMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -368,11 +400,11 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         }
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "OnFoot" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "PlayScene" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="OnFootActions.AddCallbacks(IOnFootActions)" />
-    /// <seealso cref="OnFootActions.RemoveCallbacks(IOnFootActions)" />
-    public interface IOnFootActions
+    /// <seealso cref="PlaySceneActions.AddCallbacks(IPlaySceneActions)" />
+    /// <seealso cref="PlaySceneActions.RemoveCallbacks(IPlaySceneActions)" />
+    public interface IPlaySceneActions
     {
         /// <summary>
         /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -381,5 +413,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLook(InputAction.CallbackContext context);
     }
 }

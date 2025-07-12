@@ -1,21 +1,22 @@
 using System;
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour, IInitializable, IMoveable
+public class PlayerMover : MonoBehaviour, IInitializable<Player>, IMoveable
 {
     [field: SerializeField] public float MoveSpeed { get; private set; }
     public event Action<float> OnMoveSpeedChanged;
     
     private Player _player;
 
-    public void Initialize()
+    public void Initialize(Player player)
     {
-        _player = GetComponent<Player>();
+        _player = player;
+        MoveSpeed = _player.MoveSpeed;
     }
 
     public void Move(Vector2 direction)
     {
-        Debug.Log("Move");
+        Debug.Log("Move: " + direction);
     }
     
     public void SetSettings()

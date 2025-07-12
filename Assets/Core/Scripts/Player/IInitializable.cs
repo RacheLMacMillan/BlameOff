@@ -1,4 +1,4 @@
-public interface IInitializable
+public interface IInitializable<T>
 {
-    public void Initialize();
+    public void Initialize(T initializer);
 }

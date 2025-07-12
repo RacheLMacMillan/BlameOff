@@ -2,22 +2,28 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(PlayerMover))]
+[RequireComponent(typeof(PlayerLooker))]
 public class Player : MonoBehaviour
 {
+    [Header("Debug settings")]
     [SerializeField] private bool _isDebuggingOn;
 
-    public float Health { get; private set; }
+    [Header("Core settings")]
+    [field: SerializeField] public float Health { get; private set; }
     
     [field: SerializeField, Min(0)] public float MoveSpeed { get; private set; }
     [field: SerializeField, Min(1), Range(1, 10)] public float SpringSpeed { get; private set; }
     [field: SerializeField, Min(0), Range(0, 1)] public float CrouchSpeed { get; private set; }
     
-    public Vector2 PlayerVelocity { get; private set; }
+    [Header("Components")]
     
-    public PlayerInput PlayerInput { get; private set; }
-    
-    public PlayerMover PlayerMover { get; private set; }
+    [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
+    [field: SerializeField] public PlayerMover PlayerMover { get; private set; }
+    [field: SerializeField] public PlayerLooker PlayerLooker { get; private set; }
 
+    [Header("Do not touch!")]
+    [field: SerializeField] public Vector2 PlayerVelocity { get; private set; }
+    
     private void Awake()
     {
         GetPlayersComponents();
@@ -34,9 +40,9 @@ public class Player : MonoBehaviour
         PlayerMover.OnMoveSpeedChanged -= OnSpeedMoveChanged;
     }
 
-    public void Sprint() {}
-    public void Crouch() {}
-    public void Look() {}
+    public void OnSprint() {}
+    public void OnCrouch() {}
+    public void OnLook() {}
     
     private void OnSpeedMoveChanged(float value)
     {
@@ -50,11 +56,19 @@ public class Player : MonoBehaviour
     {
         PlayerInput = GetComponent<PlayerInput>();
         PlayerMover = GetComponent<PlayerMover>();
+        PlayerLooker = GetComponent<PlayerLooker>();
+        
+        if (_isDebuggingOn)
+            Debug.Log("The components are gotten");
     }
     
     private void InitializePlayer()
     {
-        PlayerInput.Initialize();
-        PlayerMover.Initialize();
+        PlayerInput.Initialize(this);
+        PlayerMover.Initialize(this);
+        PlayerLooker.Initialize(this);
+        
+        if (_isDebuggingOn)
+            Debug.Log("The components are initialized");
     }
 }

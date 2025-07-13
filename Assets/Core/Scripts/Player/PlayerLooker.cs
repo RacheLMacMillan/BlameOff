@@ -8,13 +8,27 @@ public class PlayerLooker : MonoBehaviour, IInitializable<Player>
     private float _minVerticalRotation = -90;
     private float _maxVerticalRotation = 90;
 
+    private Player _player;
     private Camera _camera;
 
     private float _rotationByY;
-    
+
+    private void OnEnable()
+    {
+        _player.OnCameraSettingsChanged += SetNewSettings;
+    }
+
+    private void OnDisable()
+    {
+        _player.OnCameraSettingsChanged -= SetNewSettings;
+    }
+
     public void Initialize(Player player)
     {
+        _player = player;
         _camera = player.Camera;
+        
+        SetNewSettings(_player.XSensitivity, _player.YSensitivity);
     }
     
     public void Look(Vector2 delta)
@@ -25,5 +39,11 @@ public class PlayerLooker : MonoBehaviour, IInitializable<Player>
         _camera.transform.localRotation = Quaternion.Euler(_rotationByY, 0, 0);
 
         transform.Rotate(Vector3.up * delta.x * _xSensitivity * Time.deltaTime);
+    }
+    
+    private void SetNewSettings(float xSensitivity, float ySensitivity)
+    {
+        _xSensitivity = xSensitivity;
+        _ySensitivity = ySensitivity;
     }
 }

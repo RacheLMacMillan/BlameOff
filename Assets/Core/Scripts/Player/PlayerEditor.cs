@@ -1,17 +1,17 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(PlayerMover))]
-public class PlayerMoverEditor : Editor
+[CustomEditor(typeof(Player))]
+public class PlayerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
-        PlayerMover playerMover = (PlayerMover)target;
+        Player player = (Player)target;
         
         if (GUILayout.Button("Set new setting"))
         {
-            playerMover.SetSettings();
+            player.SetSettings();
         }
     }
 }

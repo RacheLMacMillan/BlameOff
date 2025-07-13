@@ -1,12 +1,20 @@
-using System;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour, IInitializable<Player>, IMoveable
 {
     [field: SerializeField] public float MoveSpeed { get; private set; }
-    public event Action<float> OnMoveSpeedChanged;
     
     private Player _player;
+
+    private void OnEnable()
+    {
+        _player.OnMoveSpeedChanged += SetSetting;
+    }
+
+    private void OnDisable()
+    {
+        _player.OnMoveSpeedChanged -= SetSetting;
+    }
 
     public void Initialize(Player player)
     {
@@ -29,9 +37,8 @@ public class PlayerMover : MonoBehaviour, IInitializable<Player>, IMoveable
         _player.CharacterController.Move(transform.TransformDirection(scaledDirection));
     }
     
-    public void SetSettings()
+    private void SetSetting(float speed)
     {
-        OnMoveSpeedChanged?.Invoke(MoveSpeed);
-        Debug.Log("Settings were set");
+        MoveSpeed = speed;
     }
 }

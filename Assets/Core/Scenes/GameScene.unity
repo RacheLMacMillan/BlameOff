@@ -5722,13 +5722,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isDebuggingOn: 1
-  <Health>k__BackingField: 0
-  <MoveSpeed>k__BackingField: 0
+  <Health>k__BackingField: 1000
+  <MoveSpeed>k__BackingField: 5
   <SpringSpeed>k__BackingField: 0
   <CrouchSpeed>k__BackingField: 0
+  <XSensitivity>k__BackingField: 10
+  <YSensitivity>k__BackingField: 10
+  <Camera>k__BackingField: {fileID: 0}
+  <CharacterController>k__BackingField: {fileID: 0}
   <PlayerInput>k__BackingField: {fileID: 0}
-  <PlayerMover>k__BackingField: {fileID: 0}
   <PlayerLooker>k__BackingField: {fileID: 0}
+  <PlayerMover>k__BackingField: {fileID: 0}
   <PlayerVelocity>k__BackingField: {x: 0, y: 0}
 --- !u!114 &322117585
 MonoBehaviour:

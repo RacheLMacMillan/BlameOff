@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour, IInitializable<Player>
@@ -6,18 +5,18 @@ public class PlayerInput : MonoBehaviour, IInitializable<Player>
     private InputMap _inputMap;
     private InputMap.OnFootActions OnFoot;
 
-    private PlayerMover _playerMover;
+    private Player _player;
 
     public void Initialize(Player player)
     {
         _inputMap = new InputMap();
 
-        SetMaps();
+        _player = player;
 
-        _playerMover = player.PlayerMover;
+        SetMaps();
         
-        OnFoot.Sprint.performed += context => player.OnSprint();
-        OnFoot.Crouch.performed += context => player.OnCrouch();
+        OnFoot.Sprint.performed += context => _player.OnSprint();
+        OnFoot.Crouch.performed += context => _player.OnCrouch();
     }
 
     private void OnEnable() => _inputMap.Enable();
@@ -25,14 +24,24 @@ public class PlayerInput : MonoBehaviour, IInitializable<Player>
 
     private void Update()
     {
+        if (OnFoot.Look.ReadValue<Vector2>() != Vector2.zero)
+            _player.OnLook(OnFoot.Look.ReadValue<Vector2>());
+
         if (OnFoot.Move.ReadValue<Vector2>() != Vector2.zero)
-            _playerMover.Move(OnFoot.Move.ReadValue<Vector2>());
-        // if (OnFoot.Look.ReadValue<Vector2>() != Vector2.zero)
-        //     _playerMover.Move(OnFoot.Look.ReadValue<Vector2>());
+        {
+            Vector3 NormalizedDirection = NormalizeDirection(OnFoot.Move.ReadValue<Vector2>());
+            
+            _player.OnMove(NormalizedDirection);
+        }
     }
 
     private void SetMaps()
     {
         OnFoot = _inputMap.OnFoot;
+    }
+    
+    private Vector3 NormalizeDirection(Vector2 direction)
+    {
+        return new Vector3(direction.x, 0, direction.y);
     }
 }

@@ -1,8 +1,9 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerInput))]
-[RequireComponent(typeof(PlayerMover))]
 [RequireComponent(typeof(PlayerLooker))]
+[RequireComponent(typeof(PlayerMover))]
 public class Player : MonoBehaviour
 {
     [Header("Debug settings")]
@@ -16,16 +17,19 @@ public class Player : MonoBehaviour
     [field: SerializeField, Min(0), Range(0, 1)] public float CrouchSpeed { get; private set; }
     
     [Header("Components")]
+    [field: SerializeField] public Camera Camera { get; private set; }
+    
+    [field: SerializeField] public CharacterController CharacterController { get; private set; }
     
     [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
-    [field: SerializeField] public PlayerMover PlayerMover { get; private set; }
     [field: SerializeField] public PlayerLooker PlayerLooker { get; private set; }
+    [field: SerializeField] public PlayerMover PlayerMover { get; private set; }
 
     [Header("Do not touch!")]
     [field: SerializeField] public Vector2 PlayerVelocity { get; private set; }
     
     private void Awake()
-    {
+    {    
         GetPlayersComponents();
         InitializePlayer();
     }
@@ -40,9 +44,18 @@ public class Player : MonoBehaviour
         PlayerMover.OnMoveSpeedChanged -= OnSpeedMoveChanged;
     }
 
+    public void OnLook(Vector2 delta) 
+    {
+        PlayerLooker.Look(delta);
+    }
+    
+    public void OnMove(Vector3 direction)
+    {
+        PlayerMover.Move(direction);
+    }
+
     public void OnSprint() {}
     public void OnCrouch() {}
-    public void OnLook() {}
     
     private void OnSpeedMoveChanged(float value)
     {
@@ -54,9 +67,13 @@ public class Player : MonoBehaviour
     
     private void GetPlayersComponents()
     {
+        Camera = GetComponentInChildren<Camera>();
+        
+        CharacterController = GetComponent<CharacterController>();
+    
         PlayerInput = GetComponent<PlayerInput>();
-        PlayerMover = GetComponent<PlayerMover>();
         PlayerLooker = GetComponent<PlayerLooker>();
+        PlayerMover = GetComponent<PlayerMover>();
         
         if (_isDebuggingOn)
             Debug.Log("The components are gotten");
@@ -65,8 +82,8 @@ public class Player : MonoBehaviour
     private void InitializePlayer()
     {
         PlayerInput.Initialize(this);
-        PlayerMover.Initialize(this);
         PlayerLooker.Initialize(this);
+        PlayerMover.Initialize(this);
         
         if (_isDebuggingOn)
             Debug.Log("The components are initialized");

@@ -11,12 +11,22 @@ public class PlayerMover : MonoBehaviour, IInitializable<Player>, IMoveable
     public void Initialize(Player player)
     {
         _player = player;
+        
         MoveSpeed = _player.MoveSpeed;
     }
 
-    public void Move(Vector2 direction)
+    public void Move(Vector3 direction)
     {
-        Debug.Log("Move: " + direction);
+        float scaledMoveSpeed = MoveSpeed * Time.deltaTime;
+
+        Vector3 scaledDirection = new Vector3
+        (
+            direction.x * scaledMoveSpeed,
+            direction.y * scaledMoveSpeed,
+            direction.z * scaledMoveSpeed
+        );
+
+        _player.CharacterController.Move(transform.TransformDirection(scaledDirection));
     }
     
     public void SetSettings()

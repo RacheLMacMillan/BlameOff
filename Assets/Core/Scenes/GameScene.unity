@@ -5721,19 +5721,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df37f8e786bc454a82fdc6392bb7325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isDebuggingOn: 1
   <Health>k__BackingField: 1000
   <MoveSpeed>k__BackingField: 5
   <SpringSpeed>k__BackingField: 0
   <CrouchSpeed>k__BackingField: 0
-  <XSensitivity>k__BackingField: 10
-  <YSensitivity>k__BackingField: 10
+  <XSensitivity>k__BackingField: 5
+  <YSensitivity>k__BackingField: 5
   <Camera>k__BackingField: {fileID: 0}
   <CharacterController>k__BackingField: {fileID: 0}
   <PlayerInput>k__BackingField: {fileID: 0}
   <PlayerLooker>k__BackingField: {fileID: 0}
   <PlayerMover>k__BackingField: {fileID: 0}
   <PlayerVelocity>k__BackingField: {x: 0, y: 0}
+  _isDebuggingOn: 0
 --- !u!114 &322117585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5746,6 +5746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4378ea0989c6b459b982f7c962fe14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isDebugging: 0
 --- !u!114 &322117586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5758,7 +5759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1666ed807188d46abdef470b4966e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 0
 --- !u!114 &322117587
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,22 +1,24 @@
+using System;
 using UnityEngine;
 
 public class PlayerInput : MonoBehaviour, IInitializable<Player>
 {
+    [SerializeField] private bool _isDebugging;
+    
     private InputMap _inputMap;
     private InputMap.OnFootActions OnFoot;
 
-    private Player _player;
-
+    public event Action<Vector3> OnPlayerMoving;
+    public event Action<Vector2> OnPlayerLooking;
+    
     public void Initialize(Player player)
     {
         _inputMap = new InputMap();
 
-        _player = player;
-
         SetMaps();
         
-        OnFoot.Sprint.performed += context => _player.OnSprint();
-        OnFoot.Crouch.performed += context => _player.OnCrouch();
+        OnFoot.Sprint.performed += context => player.OnSprint();
+        OnFoot.Crouch.performed += context => player.OnCrouch();
     }
 
     private void OnEnable() => _inputMap.Enable();
@@ -24,15 +26,35 @@ public class PlayerInput : MonoBehaviour, IInitializable<Player>
 
     private void Update()
     {
-        if (OnFoot.Look.ReadValue<Vector2>() != Vector2.zero)
-            _player.OnLook(OnFoot.Look.ReadValue<Vector2>());
-
-        if (OnFoot.Move.ReadValue<Vector2>() != Vector2.zero)
+        Vector2 lookingDelta = OnFoot.Look.ReadValue<Vector2>();
+        Vector2 movingDirection = OnFoot.Move.ReadValue<Vector2>();
+    
+        if (lookingDelta != Vector2.zero)
         {
-            Vector3 NormalizedDirection = NormalizeDirection(OnFoot.Move.ReadValue<Vector2>());
-            
-            _player.OnMove(NormalizedDirection);
+            PlayerIsLooking(lookingDelta);
         }
+
+        if (movingDirection != Vector2.zero)
+        {
+            PlayerIsMoving(movingDirection);
+        }
+    }
+    
+    private void PlayerIsMoving(Vector2 direction)
+    {
+        Vector3 NormalizedDirection = NormalizeDirection(direction);
+            
+        OnPlayerMoving?.Invoke(NormalizedDirection);
+        
+        if (_isDebugging)
+            Debug.Log($"Player is moving with delta {NormalizedDirection}");
+    }
+
+    private void PlayerIsLooking(Vector2 delta)
+    {
+        OnPlayerLooking?.Invoke(delta);
+        if (_isDebugging)
+            Debug.Log($"Player is looking with delta {delta}");
     }
 
     private void SetMaps()

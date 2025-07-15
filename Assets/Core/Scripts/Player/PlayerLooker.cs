@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerLooker : MonoBehaviour, IInitializable<Player>
 {
-    private float _xSensitivity = 10;
-    private float _ySensitivity = 10;
+    private float _xSensitivity = 5;
+    private float _ySensitivity = 5;
     private float _minVerticalRotation = -90;
     private float _maxVerticalRotation = 90;
 
@@ -12,6 +12,8 @@ public class PlayerLooker : MonoBehaviour, IInitializable<Player>
     private Camera _camera;
 
     private float _rotationByY;
+
+    public event Action<float, float> OnSensitivityChanged;
 
     private void OnEnable()
     {
@@ -45,5 +47,7 @@ public class PlayerLooker : MonoBehaviour, IInitializable<Player>
     {
         _xSensitivity = xSensitivity;
         _ySensitivity = ySensitivity;
+
+        OnSensitivityChanged?.Invoke(xSensitivity, ySensitivity);
     }
 }

@@ -6,9 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMover))]
 public class Player : MonoBehaviour
 {
-    [Header("Debug settings")]
-    [SerializeField] private bool _isDebuggingOn;
-
     [Header("Core settings")]
     [field: SerializeField] public float Health { get; private set; }
     
@@ -32,7 +29,10 @@ public class Player : MonoBehaviour
     [Header("Do not touch!")]
     [field: SerializeField] public Vector2 PlayerVelocity { get; private set; }
 
-    public event Action OnCoreSettingChanged;
+    [Header("Debug settings")]
+    [SerializeField] private bool _isDebuggingOn;
+    
+    // public event Action OnCoreSettingChanged;
     public event Action<float> OnMoveSpeedChanged;
     public event Action<float, float> OnCameraSettingsChanged;
     
@@ -40,6 +40,18 @@ public class Player : MonoBehaviour
     {    
         GetPlayersComponents();
         InitializePlayer();
+    }
+
+    private void OnEnable()
+    {
+        PlayerInput.OnPlayerLooking += OnLook;
+        PlayerInput.OnPlayerMoving += OnMove;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInput.OnPlayerLooking -= OnLook;
+        PlayerInput.OnPlayerMoving -= OnMove;
     }
 
     public void OnLook(Vector2 delta) 
@@ -75,7 +87,7 @@ public class Player : MonoBehaviour
             Debug.Log($"Camera's settings were changed. Horizontal sensitivity equals {XSensitivity} and Vertical  sensitivity equals {YSensitivity}.");
     }
 
-    public void ChangeMoveSpeed(float value)
+    private void ChangeMoveSpeed(float value)
     {
         MoveSpeed = value;
 

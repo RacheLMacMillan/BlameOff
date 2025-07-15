@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour, IInitializable<Player>, IMoveable
 {
-    [field: SerializeField] public float MoveSpeed { get; private set; }
+    private float MoveSpeed;
+
+    public event Action<float> OnMoveSpeedChanged;
     
     private Player _player;
 
@@ -40,5 +43,7 @@ public class PlayerMover : MonoBehaviour, IInitializable<Player>, IMoveable
     private void SetSetting(float speed)
     {
         MoveSpeed = speed;
+
+        OnMoveSpeedChanged?.Invoke(speed);
     }
 }

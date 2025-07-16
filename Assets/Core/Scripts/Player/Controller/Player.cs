@@ -21,16 +21,25 @@ public class Player : MonoBehaviour
     [field: SerializeField] public Camera Camera { get; private set; }
     
     [field: SerializeField] public CharacterController CharacterController { get; private set; }
-    
+
+    [field: SerializeField] public PlayerGravitation PlayerGravitation { get; private set; }
     [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
     [field: SerializeField] public PlayerLooker PlayerLooker { get; private set; }
     [field: SerializeField] public PlayerMover PlayerMover { get; private set; }
 
     [Header("Do not touch!")]
-    [field: SerializeField] public Vector2 PlayerVelocity { get; private set; }
+    [field: SerializeField] public Vector3 PlayerVelocity { get; private set; }
 
+    [Header("Gravitation")]
+    [SerializeField] private float _inspectGravityValue;
+    [SerializeField] private float _passiveStress;
+    
+    [SerializeField] private bool _isPlayerGround;
+    
     [Header("Debug settings")]
     [SerializeField] private bool _isDebuggingOn;
+    
+    
     
     // public event Action OnCoreSettingChanged;
     public event Action<float> OnMoveSpeedChanged;
@@ -52,6 +61,11 @@ public class Player : MonoBehaviour
     {
         PlayerInput.OnPlayerLooking -= OnLook;
         PlayerInput.OnPlayerMoving -= OnMove;
+    }
+
+    private void Update()
+    {
+        PlayerInput.UpdateInput();        
     }
 
     public void OnLook(Vector2 delta) 
@@ -102,6 +116,8 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<Camera>();
         
         CharacterController = GetComponent<CharacterController>();
+
+        PlayerGravitation = new PlayerGravitation(this);
     
         PlayerInput = GetComponent<PlayerInput>();
         PlayerLooker = GetComponent<PlayerLooker>();

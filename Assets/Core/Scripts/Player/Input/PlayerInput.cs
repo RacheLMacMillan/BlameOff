@@ -24,7 +24,7 @@ public class PlayerInput : MonoBehaviour, IInitializable<Player>
     private void OnEnable() => _inputMap.Enable();
     private void OnDisable() => _inputMap.Disable();
 
-    private void Update()
+    public void UpdateInput()
     {
         Vector2 lookingDelta = OnFoot.Look.ReadValue<Vector2>();
         Vector2 movingDirection = OnFoot.Move.ReadValue<Vector2>();

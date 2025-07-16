@@ -2,18 +2,19 @@ using UnityEngine;
 
 public abstract class Gravitation
 {
-    public virtual void Gravitate(Vector3 velocity, bool isGrounded, float inspectGravityValue, float passiveStress)
+    public virtual float Gravitate(Vector3 velocity, bool isGrounded, float inspectGravityValue, float passiveStress)
     {
-        
+        float gravitationForce = velocity.y;
+    
         if (isGrounded == true)
         {
-            velocity.y = passiveStress;
+            gravitationForce = passiveStress;
         }
         else 
         {
-            velocity.y += inspectGravityValue * Time.deltaTime;
+            gravitationForce += inspectGravityValue * Time.deltaTime;
         }
 
-        // return velocity;
+        return gravitationForce;
     }
 }

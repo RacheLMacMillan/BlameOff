@@ -2,17 +2,21 @@ using UnityEngine;
 
 public class PlayerGravitation : Gravitation
 {
-    private Player _player;
+    private CharacterController _playerController;
 
     public PlayerGravitation(Player player)
     {
-        _player = player;
+        _playerController = player.CharacterController;
     }
 
-    public override void Gravitate(Vector3 velocity, bool isGrounded, float inspectGravityValue, float passiveStress)
+    public override float Gravitate(Vector3 velocity, bool isGrounded, float inspectGravityValue, float passiveStress)
     {
+        float gravitationForce = base.Gravitate(velocity, isGrounded, inspectGravityValue, passiveStress);
+
+        Vector3 gravitationDirection = new Vector3(0, gravitationForce * Time.deltaTime, 0);
         
+        _playerController.Move(gravitationDirection);
         
-        base.Gravitate(velocity, isGrounded, inspectGravityValue, passiveStress);
+        return gravitationForce;
     }
 }

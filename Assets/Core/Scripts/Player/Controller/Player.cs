@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _inspectGravityValue;
     [SerializeField] private float _passiveStress;
     
-    [SerializeField] private bool _isPlayerGround;
+    [SerializeField] private bool _isPlayerGrounded;
     
     [Header("Debug settings")]
     [SerializeField] private bool _isDebuggingOn;
@@ -65,8 +65,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        PlayerInput.UpdateInput();        
+        PlayerInput.UpdateInput();
+        UpdateGravitationForce(PlayerGravitation.Gravitate(PlayerVelocity, _isPlayerGrounded, _inspectGravityValue, _passiveStress));
     }
+    
 
     public void OnLook(Vector2 delta) 
     {
@@ -80,6 +82,8 @@ public class Player : MonoBehaviour
 
     public void OnSprint() {}
     public void OnCrouch() {}
+    
+    
 
     public void SetSettings()
     {
@@ -100,7 +104,6 @@ public class Player : MonoBehaviour
         if (_isDebuggingOn)
             Debug.Log($"Camera's settings were changed. Horizontal sensitivity equals {XSensitivity} and Vertical  sensitivity equals {YSensitivity}.");
     }
-
     private void ChangeMoveSpeed(float value)
     {
         MoveSpeed = value;
@@ -109,6 +112,16 @@ public class Player : MonoBehaviour
 
         if (_isDebuggingOn)
             Debug.Log($"Move speed was changed. It equals {MoveSpeed}.");
+    }
+
+    private void UpdateVelocity(Vector3 velocity)
+    {
+        PlayerVelocity = velocity;
+    }
+    
+    private void UpdateGravitationForce(float gravitationForce)
+    {
+        PlayerVelocity = new Vector3(PlayerVelocity.x, gravitationForce, PlayerVelocity.z);
     }
     
     private void GetPlayersComponents()

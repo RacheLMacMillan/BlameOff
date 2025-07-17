@@ -39,9 +39,6 @@ public class Player : MonoBehaviour
     [Header("Debug settings")]
     [SerializeField] private bool _isDebuggingOn;
     
-    
-    
-    // public event Action OnCoreSettingChanged;
     public event Action<float> OnMoveSpeedChanged;
     public event Action<float, float> OnCameraSettingsChanged;
     
@@ -68,7 +65,6 @@ public class Player : MonoBehaviour
         PlayerInput.UpdateInput();
         UpdateGravitationForce(PlayerGravitation.Gravitate(PlayerVelocity, _isPlayerGrounded, _inspectGravityValue, _passiveStress));
     }
-    
 
     public void OnLook(Vector2 delta) 
     {
@@ -82,8 +78,6 @@ public class Player : MonoBehaviour
 
     public void OnSprint() {}
     public void OnCrouch() {}
-    
-    
 
     public void SetSettings()
     {
@@ -104,6 +98,7 @@ public class Player : MonoBehaviour
         if (_isDebuggingOn)
             Debug.Log($"Camera's settings were changed. Horizontal sensitivity equals {XSensitivity} and Vertical  sensitivity equals {YSensitivity}.");
     }
+    
     private void ChangeMoveSpeed(float value)
     {
         MoveSpeed = value;

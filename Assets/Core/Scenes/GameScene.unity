@@ -5733,9 +5733,9 @@ MonoBehaviour:
   <PlayerLooker>k__BackingField: {fileID: 0}
   <PlayerMover>k__BackingField: {fileID: 0}
   <PlayerVelocity>k__BackingField: {x: 0, y: 0, z: 0}
-  _inspectGravityValue: 0
-  _passiveStress: 0
-  _isPlayerGround: 1
+  _inspectGravityValue: -9.81
+  _passiveStress: -2
+  _isPlayerGrounded: 1
   _isDebuggingOn: 1
 --- !u!114 &322117585
 MonoBehaviour:

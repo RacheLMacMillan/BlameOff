@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour, IInitializable<Player>, IMoveable
+public class PlayerMover : MonoBehaviour, IInitializable<Player>, IMoveable<Vector3>
 {
     private float MoveSpeed;
 

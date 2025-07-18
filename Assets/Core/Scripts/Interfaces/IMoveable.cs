@@ -1,6 +1,9 @@
-using UnityEngine;
-
 public interface IMoveable
 {
-    public void Move(Vector3 direction);
+    public void Move();
+}
+
+public interface IMoveable<T>
+{
+    public void Move(T t);
 }

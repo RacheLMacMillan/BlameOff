@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     [field: SerializeField, Min(1), Range(1, 10)] public float SpringSpeed { get; private set; }
     [field: SerializeField, Min(0), Range(0, 1)] public float CrouchSpeed { get; private set; }
     
+    [field: SerializeField, Min(0), Range(0, 1)] public float JumpForce { get; private set; }
+    
     [Header("User settings")]
     [field: SerializeField, Min(0), Range(0, 1)] public float XSensitivity { get; private set; }
     [field: SerializeField, Min(0), Range(0, 1)] public float YSensitivity { get; private set; }
@@ -26,6 +28,7 @@ public class Player : MonoBehaviour
     [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
     [field: SerializeField] public PlayerLooker PlayerLooker { get; private set; }
     [field: SerializeField] public PlayerMover PlayerMover { get; private set; }
+    [field: SerializeField] public PlayerJumper PlayerJumper { get; private set; }
 
     [Header("Do not touch!")]
     [field: SerializeField] public Vector3 PlayerVelocity { get; private set; }
@@ -34,14 +37,11 @@ public class Player : MonoBehaviour
     [SerializeField] private float _inspectGravityValue;
     [SerializeField] private float _passiveStress;
     
-    [SerializeField] private bool _isPlayerGrounded;
+    [SerializeField] private bool _isPlayerGrounded => CharacterController.isGrounded;
     
     [Header("Debug settings")]
     [SerializeField] private bool _isDebuggingOn;
     
-    
-    
-    // public event Action OnCoreSettingChanged;
     public event Action<float> OnMoveSpeedChanged;
     public event Action<float, float> OnCameraSettingsChanged;
     
@@ -68,7 +68,6 @@ public class Player : MonoBehaviour
         PlayerInput.UpdateInput();
         UpdateGravitationForce(PlayerGravitation.Gravitate(PlayerVelocity, _isPlayerGrounded, _inspectGravityValue, _passiveStress));
     }
-    
 
     public void OnLook(Vector2 delta) 
     {
@@ -83,7 +82,10 @@ public class Player : MonoBehaviour
     public void OnSprint() {}
     public void OnCrouch() {}
     
-    
+    public void OnJump()
+    {
+        PlayerVelocity = PlayerJumper.Jump(PlayerVelocity, CharacterController.isGrounded);
+    }
 
     public void SetSettings()
     {
@@ -104,6 +106,7 @@ public class Player : MonoBehaviour
         if (_isDebuggingOn)
             Debug.Log($"Camera's settings were changed. Horizontal sensitivity equals {XSensitivity} and Vertical  sensitivity equals {YSensitivity}.");
     }
+    
     private void ChangeMoveSpeed(float value)
     {
         MoveSpeed = value;
@@ -131,6 +134,7 @@ public class Player : MonoBehaviour
         CharacterController = GetComponent<CharacterController>();
 
         PlayerGravitation = new PlayerGravitation(this);
+        PlayerJumper = new PlayerJumper(CharacterController, JumpForce);
     
         PlayerInput = GetComponent<PlayerInput>();
         PlayerLooker = GetComponent<PlayerLooker>();

@@ -19,6 +19,7 @@ public class PlayerInput : MonoBehaviour, IInitializable<Player>
         
         OnFoot.Sprint.performed += context => player.OnSprint();
         OnFoot.Crouch.performed += context => player.OnCrouch();
+        OnFoot.Jump.performed += context => player.OnJump();
     }
 
     private void OnEnable() => _inputMap.Enable();

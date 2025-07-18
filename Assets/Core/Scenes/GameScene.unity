@@ -5725,6 +5725,7 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 5
   <SpringSpeed>k__BackingField: 0
   <CrouchSpeed>k__BackingField: 0
+  <JumpForce>k__BackingField: 173.7
   <XSensitivity>k__BackingField: 5
   <YSensitivity>k__BackingField: 5
   <Camera>k__BackingField: {fileID: 0}
@@ -5733,10 +5734,9 @@ MonoBehaviour:
   <PlayerLooker>k__BackingField: {fileID: 0}
   <PlayerMover>k__BackingField: {fileID: 0}
   <PlayerVelocity>k__BackingField: {x: 0, y: 0, z: 0}
-  _inspectGravityValue: 0
-  _passiveStress: 0
-  _isPlayerGround: 1
-  _isDebuggingOn: 1
+  _inspectGravityValue: -9.81
+  _passiveStress: -2
+  _isDebuggingOn: 0
 --- !u!114 &322117585
 MonoBehaviour:
   m_ObjectHideFlags: 0

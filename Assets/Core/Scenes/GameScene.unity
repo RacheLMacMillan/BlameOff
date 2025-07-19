@@ -5725,7 +5725,7 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 5
   <SpringSpeed>k__BackingField: 0
   <CrouchSpeed>k__BackingField: 0
-  <JumpForce>k__BackingField: 173.7
+  <JumpForce>k__BackingField: 42.7
   <XSensitivity>k__BackingField: 5
   <YSensitivity>k__BackingField: 5
   <Camera>k__BackingField: {fileID: 0}

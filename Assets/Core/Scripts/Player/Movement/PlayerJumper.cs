@@ -21,9 +21,9 @@ public class PlayerJumper : IJumpable<Vector3, bool>
             throw new ArgumentOutOfRangeException("Player isn't grounded");
         }
 
-        playerVelocity.y = Mathf.Sqrt(-_jumpForce * -9.8f) * Time.deltaTime;
+        playerVelocity.y = Mathf.Sqrt(-_jumpForce * -9.8f);
         
-        _characterController.Move(playerVelocity);
+        _characterController.Move(playerVelocity * Time.deltaTime);
 
         return playerVelocity * Time.deltaTime;
     }

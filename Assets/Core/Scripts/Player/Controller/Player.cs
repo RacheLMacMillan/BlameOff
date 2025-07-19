@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [field: SerializeField, Min(1), Range(1, 10)] public float SpringSpeed { get; private set; }
     [field: SerializeField, Min(0), Range(0, 1)] public float CrouchSpeed { get; private set; }
     
-    [field: SerializeField, Min(0), Range(0, 1)] public float JumpForce { get; private set; }
+    [field: SerializeField, Min(0)] public float JumpForce { get; private set; }
     
     [Header("User settings")]
     [field: SerializeField, Min(0), Range(0, 1)] public float XSensitivity { get; private set; }
@@ -84,6 +84,7 @@ public class Player : MonoBehaviour
     
     public void OnJump()
     {
+        transform.position += new Vector3(0, 10, 0);
         PlayerVelocity = PlayerJumper.Jump(PlayerVelocity, CharacterController.isGrounded);
     }
 

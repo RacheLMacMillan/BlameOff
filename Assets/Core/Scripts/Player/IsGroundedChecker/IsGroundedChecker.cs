@@ -10,7 +10,7 @@ public class IsGroundedChecker : MonoBehaviour
     {
         return Physics.CheckSphere
         (
-            new Vector3(transform.position.x, transform.position.y + 0.45f, transform.position.z),
+            ScalePosition(),
             _radiusOfCheck,
             _toStandLayer
         );
@@ -25,4 +25,9 @@ public class IsGroundedChecker : MonoBehaviour
 			transform.localPosition.z + _positionOfCheck.z
 		);
 	}
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(ScalePosition(), _radiusOfCheck);
+    }
 }

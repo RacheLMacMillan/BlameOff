@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [field: SerializeField] public Camera Camera { get; private set; }
     
     [field: SerializeField] public CharacterController CharacterController { get; private set; }
+    [field: SerializeField] public IsGroundedChecker IsGroundedChecker { get; private set; }
 
     [field: SerializeField] public PlayerGravitation PlayerGravitation { get; private set; }
     [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _inspectGravityValue;
     [SerializeField] private float _passiveStress;
     
-    [SerializeField] private bool _isPlayerGrounded => CharacterController.isGrounded;
+    [SerializeField] private bool _isPlayerGrounded;
     
     [Header("Debug settings")]
     [SerializeField] private bool _isDebuggingOn;
@@ -65,8 +66,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        _isPlayerGrounded = IsGroundedChecker.IsGrounded();
+    
         PlayerInput.UpdateInput();
         UpdateGravitationForce(PlayerGravitation.Gravitate(PlayerVelocity, _isPlayerGrounded, _inspectGravityValue, _passiveStress));
+        
     }
 
     public void OnLook(Vector2 delta) 
@@ -133,6 +137,7 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<Camera>();
         
         CharacterController = GetComponent<CharacterController>();
+        IsGroundedChecker = GetComponent<IsGroundedChecker>();
 
         PlayerGravitation = new PlayerGravitation(this);
         PlayerJumper = new PlayerJumper(CharacterController, JumpForce);

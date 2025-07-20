@@ -5659,6 +5659,7 @@ GameObject:
   - component: {fileID: 322117585}
   - component: {fileID: 322117587}
   - component: {fileID: 322117586}
+  - component: {fileID: 322117588}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5704,7 +5705,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1822078279}
   - {fileID: 330585546}
   - {fileID: 1323845119}
   m_Father: {fileID: 0}
@@ -5730,12 +5730,14 @@ MonoBehaviour:
   <YSensitivity>k__BackingField: 5
   <Camera>k__BackingField: {fileID: 0}
   <CharacterController>k__BackingField: {fileID: 0}
+  <IsGroundedChecker>k__BackingField: {fileID: 0}
   <PlayerInput>k__BackingField: {fileID: 0}
   <PlayerLooker>k__BackingField: {fileID: 0}
   <PlayerMover>k__BackingField: {fileID: 0}
   <PlayerVelocity>k__BackingField: {x: 0, y: 0, z: 0}
   _inspectGravityValue: -9.81
   _passiveStress: -2
+  _isPlayerGrounded: 0
   _isDebuggingOn: 0
 --- !u!114 &322117585
 MonoBehaviour:
@@ -5774,6 +5776,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b4e3d5e53505644b55cbb6e3ef9207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &322117588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322117580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 311d52522ab2efd4480a9117a9f45755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _toStandLayer:
+    serializedVersion: 2
+    m_Bits: 55
+  _positionOfCheck: {x: 0, y: 0.48, z: 0}
+  _radiusOfCheck: 0.5
 --- !u!1 &329931723
 GameObject:
   m_ObjectHideFlags: 0
@@ -28909,37 +28928,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820057528}
   m_Mesh: {fileID: -1975198033806797897, guid: a9824bbe699b0c64c8998ab4e9f99405, type: 3}
---- !u!1 &1822078278
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1822078279}
-  m_Layer: 0
-  m_Name: Checkers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1822078279
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1822078278}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 322117582}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1823200833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3e8b8d0aafc1314489cf4489e77df960, type: 3}

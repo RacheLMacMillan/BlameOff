@@ -32,19 +32,21 @@ public class Player : MonoBehaviour
     [field: SerializeField] public PlayerJumper PlayerJumper { get; private set; }
 
     [Header("Do not touch!")]
-    [field: SerializeField] public Vector3 PlayerVelocity { get; private set; }
+    [field: SerializeField] public Vector3 PlayerVelocity { get; set; }
 
     [Header("Gravitation")]
     [SerializeField] private float _inspectGravityValue;
     [SerializeField] private float _passiveStress;
     
-    [SerializeField] private bool _isPlayerGrounded;
+    [field: SerializeField] public bool IsPlayerGrounded { get; private set; }
     
     [Header("Debug settings")]
     [SerializeField] private bool _isDebuggingOn;
     
     public event Action<float> OnMoveSpeedChanged;
     public event Action<float, float> OnCameraSettingsChanged;
+
+    public Transform aaaaaaaaaa;
     
     private void Awake()
     {    
@@ -66,11 +68,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        _isPlayerGrounded = IsGroundedChecker.IsGrounded();
+        IsPlayerGrounded = IsGroundedChecker.IsGrounded();
     
         PlayerInput.UpdateInput();
-        UpdateGravitationForce(PlayerGravitation.Gravitate(PlayerVelocity, _isPlayerGrounded, _inspectGravityValue, _passiveStress));
-        
+        UpdateGravitationForce(PlayerGravitation.Gravitate(PlayerVelocity, IsPlayerGrounded, _inspectGravityValue, _passiveStress));
     }
 
     public void OnLook(Vector2 delta) 
@@ -88,8 +89,7 @@ public class Player : MonoBehaviour
     
     public void OnJump()
     {
-        transform.position += new Vector3(0, 10, 0);
-        PlayerVelocity = PlayerJumper.Jump(PlayerVelocity, CharacterController.isGrounded);
+        PlayerVelocity = PlayerJumper.Jump(this);
     }
 
     public void SetSettings()
@@ -121,11 +121,6 @@ public class Player : MonoBehaviour
         if (_isDebuggingOn)
             Debug.Log($"Move speed was changed. It equals {MoveSpeed}.");
     }
-
-    private void UpdateVelocity(Vector3 velocity)
-    {
-        PlayerVelocity = velocity;
-    }
     
     private void UpdateGravitationForce(float gravitationForce)
     {
@@ -140,11 +135,11 @@ public class Player : MonoBehaviour
         IsGroundedChecker = GetComponent<IsGroundedChecker>();
 
         PlayerGravitation = new PlayerGravitation(this);
-        PlayerJumper = new PlayerJumper(CharacterController, JumpForce);
     
         PlayerInput = GetComponent<PlayerInput>();
         PlayerLooker = GetComponent<PlayerLooker>();
         PlayerMover = GetComponent<PlayerMover>();
+        PlayerJumper = GetComponent<PlayerJumper>();
         
         if (_isDebuggingOn)
             Debug.Log("The components are gotten.");

@@ -5727,9 +5727,15 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 5
   <SpringSpeed>k__BackingField: 0
   <CrouchSpeed>k__BackingField: 0
-  <JumpForce>k__BackingField: 42.7
+  <JumpForce>k__BackingField: 5
+  <JumpStartUp>k__BackingField: {x: 0, y: 0.5, z: 0}
   <XSensitivity>k__BackingField: 5
   <YSensitivity>k__BackingField: 5
+  <PlayerVelocity>k__BackingField: {x: 0, y: 0, z: 0}
+  _inspectGravityValue: -9.81
+  _passiveStress: -2
+  <IsPlayerGrounded>k__BackingField: 0
+  _isDebuggingOn: 0
   <Camera>k__BackingField: {fileID: 0}
   <CharacterController>k__BackingField: {fileID: 0}
   <IsGroundedChecker>k__BackingField: {fileID: 0}
@@ -5737,12 +5743,6 @@ MonoBehaviour:
   <PlayerLooker>k__BackingField: {fileID: 0}
   <PlayerMover>k__BackingField: {fileID: 0}
   <PlayerJumper>k__BackingField: {fileID: 0}
-  <PlayerVelocity>k__BackingField: {x: 0, y: 0, z: 0}
-  _inspectGravityValue: -9.81
-  _passiveStress: -2
-  <IsPlayerGrounded>k__BackingField: 0
-  _isDebuggingOn: 0
-  aaaaaaaaaa: {fileID: 322117582}
 --- !u!114 &322117585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5809,8 +5809,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950bd0c17096044f973a119f8fac019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 10
-  _jumpingStartUp: {x: 0, y: 31.45, z: 0}
+  _jumpForce: 2.5
+  _jumpStartUp: {x: 0, y: 0.5, z: 0}
 --- !u!1 &329931723
 GameObject:
   m_ObjectHideFlags: 0

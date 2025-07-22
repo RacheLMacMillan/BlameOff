@@ -40,7 +40,11 @@ public class Player : MonoBehaviour
     [field: SerializeField] public Camera Camera { get; private set; }
     
     [field: SerializeField] public CharacterController CharacterController { get; private set; }
+    
+    [field: SerializeField] public PositionSummer PositionSummer { get; private set; }
+    
     [field: SerializeField] public IsGroundedChecker IsGroundedChecker { get; private set; }
+    [field: SerializeField] public IsObstacleAboveChecker IsObstacleAboveChecker { get; private set; }
 
     [field: SerializeField] public PlayerGravitation PlayerGravitation { get; private set; }
     [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
@@ -144,7 +148,11 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<Camera>();
         
         CharacterController = GetComponent<CharacterController>();
+
+        PositionSummer = new PositionSummer();
+        
         IsGroundedChecker = GetComponent<IsGroundedChecker>();
+        IsObstacleAboveChecker = GetComponent<IsObstacleAboveChecker>();
 
         PlayerGravitation = new PlayerGravitation(CharacterController);
     
@@ -159,6 +167,9 @@ public class Player : MonoBehaviour
     
     private void InitializePlayer()
     {
+        IsGroundedChecker.Initialize(PositionSummer);
+        IsObstacleAboveChecker.Initialize(PositionSummer);
+    
         PlayerInput.Initialize(this);
         PlayerLooker.Initialize(this);
         PlayerMover.Initialize(this);

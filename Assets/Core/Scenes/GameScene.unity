@@ -5727,7 +5727,7 @@ MonoBehaviour:
   <MoveSpeed>k__BackingField: 5
   <SpringSpeed>k__BackingField: 0
   <CrouchSpeed>k__BackingField: 0
-  <JumpForce>k__BackingField: 5
+  <JumpForce>k__BackingField: 2.5
   <JumpStartUp>k__BackingField: {x: 0, y: 0.5, z: 0}
   <XSensitivity>k__BackingField: 5
   <YSensitivity>k__BackingField: 5
@@ -5809,8 +5809,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d950bd0c17096044f973a119f8fac019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 2.5
-  _jumpStartUp: {x: 0, y: 0.5, z: 0}
 --- !u!1 &329931723
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerJumper : MonoBehaviour, IInitializable<Player>, IJumpable<Player>
 {
-    [SerializeField] private float _jumpForce;
+    private float _jumpForce;
 
-    [SerializeField] private Vector3 _jumpStartUp;
+    private Vector3 _jumpStartUp;
     
     private Player _player;
 

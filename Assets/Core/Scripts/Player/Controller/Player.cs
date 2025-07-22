@@ -146,7 +146,7 @@ public class Player : MonoBehaviour
         CharacterController = GetComponent<CharacterController>();
         IsGroundedChecker = GetComponent<IsGroundedChecker>();
 
-        PlayerGravitation = new PlayerGravitation(this);
+        PlayerGravitation = new PlayerGravitation(CharacterController);
     
         PlayerInput = GetComponent<PlayerInput>();
         PlayerLooker = GetComponent<PlayerLooker>();

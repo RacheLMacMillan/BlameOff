@@ -4,9 +4,9 @@ public class PlayerGravitation : Gravitation
 {
     private CharacterController _playerController;
 
-    public PlayerGravitation(Player player)
+    public PlayerGravitation(CharacterController playerController)
     {
-        _playerController = player.CharacterController;
+        _playerController = playerController;
     }
 
     public override float Gravitate(Vector3 velocity, bool isGrounded, float inspectGravityValue, float passiveStress)

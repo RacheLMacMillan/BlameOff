@@ -14,22 +14,11 @@ public class Player : MonoBehaviour
     [field: SerializeField, Min(0), Range(0, 1)] public float CrouchSpeed { get; private set; }
     
     [field: SerializeField, Min(0)] public float JumpForce { get; private set; }
+    [field: SerializeField, Min(0)] public Vector3 JumpStartUp { get; private set; }
     
     [Header("User settings")]
     [field: SerializeField, Min(0), Range(0, 1)] public float XSensitivity { get; private set; }
     [field: SerializeField, Min(0), Range(0, 1)] public float YSensitivity { get; private set; }
-    
-    [Header("Components")]
-    [field: SerializeField] public Camera Camera { get; private set; }
-    
-    [field: SerializeField] public CharacterController CharacterController { get; private set; }
-    [field: SerializeField] public IsGroundedChecker IsGroundedChecker { get; private set; }
-
-    [field: SerializeField] public PlayerGravitation PlayerGravitation { get; private set; }
-    [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
-    [field: SerializeField] public PlayerLooker PlayerLooker { get; private set; }
-    [field: SerializeField] public PlayerMover PlayerMover { get; private set; }
-    [field: SerializeField] public PlayerJumper PlayerJumper { get; private set; }
 
     [Header("Do not touch!")]
     [field: SerializeField] public Vector3 PlayerVelocity { get; set; }
@@ -45,8 +34,19 @@ public class Player : MonoBehaviour
     
     public event Action<float> OnMoveSpeedChanged;
     public event Action<float, float> OnCameraSettingsChanged;
+    public event Action<Vector3, float> OnJumpingSettingsChanged;
+    
+    [Header("Components")]
+    [field: SerializeField] public Camera Camera { get; private set; }
+    
+    [field: SerializeField] public CharacterController CharacterController { get; private set; }
+    [field: SerializeField] public IsGroundedChecker IsGroundedChecker { get; private set; }
 
-    public Transform aaaaaaaaaa;
+    [field: SerializeField] public PlayerGravitation PlayerGravitation { get; private set; }
+    [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
+    [field: SerializeField] public PlayerLooker PlayerLooker { get; private set; }
+    [field: SerializeField] public PlayerMover PlayerMover { get; private set; }
+    [field: SerializeField] public PlayerJumper PlayerJumper { get; private set; }
     
     private void Awake()
     {    
@@ -89,13 +89,14 @@ public class Player : MonoBehaviour
     
     public void OnJump()
     {
-        PlayerVelocity = PlayerJumper.Jump(this);
+        UpdateGravitationForce(PlayerJumper.Jump(this).y);
     }
 
     public void SetSettings()
     {
         ChangeMoveSpeed(MoveSpeed);
         ChangeCameraSettings(XSensitivity, YSensitivity);
+        ChangeJumpingSettings(JumpStartUp, JumpForce);
         
         if (_isDebuggingOn)
             Debug.Log("Core Setting were set.");
@@ -120,6 +121,17 @@ public class Player : MonoBehaviour
 
         if (_isDebuggingOn)
             Debug.Log($"Move speed was changed. It equals {MoveSpeed}.");
+    }
+    
+    private void ChangeJumpingSettings(Vector3 jumpStartUp, float jumpForce)
+    {
+        JumpForce = jumpForce;
+        JumpStartUp = jumpStartUp;
+
+        OnJumpingSettingsChanged?.Invoke(JumpStartUp, JumpForce);
+        
+        if (_isDebuggingOn)
+            Debug.Log($"Jumping setting were changed. Jump start up equals {JumpStartUp}, jump force equals {JumpForce}");
     }
     
     private void UpdateGravitationForce(float gravitationForce)
@@ -150,6 +162,7 @@ public class Player : MonoBehaviour
         PlayerInput.Initialize(this);
         PlayerLooker.Initialize(this);
         PlayerMover.Initialize(this);
+        PlayerJumper.Initialize(this);
         
         if (_isDebuggingOn)
             Debug.Log("The components are initialized.");

@@ -1,13 +1,24 @@
 using System;
 using UnityEngine;
 
-public class PlayerJumper : MonoBehaviour, IJumpable<Player>
+public class PlayerJumper : MonoBehaviour, IInitializable<Player>, IJumpable<Player>
 {
-    private CharacterController _characterController;
-
     [SerializeField] private float _jumpForce;
 
-    [SerializeField] private Vector3 _jumpingStartUp;
+    [SerializeField] private Vector3 _jumpStartUp;
+    
+    private Player _player;
+
+    public void Initialize(Player player)
+    {
+        _player = player;
+        
+        _jumpStartUp = player.JumpStartUp;
+        _jumpForce = player.JumpForce;
+    }
+
+    private void OnEnable() => _player.OnJumpingSettingsChanged += ChangeSettings;
+    private void OnDisable() => _player.OnJumpingSettingsChanged -= ChangeSettings;
 
     public Vector3 Jump(Player player)
     {
@@ -16,16 +27,18 @@ public class PlayerJumper : MonoBehaviour, IJumpable<Player>
             throw new ArgumentOutOfRangeException("Player isn't grounded");
         }
         
-        transform.position += _jumpingStartUp;
+        transform.position += _jumpStartUp;
 
         Vector3 playerVelocity = player.PlayerVelocity;
         
         playerVelocity.y = Mathf.Sqrt(-_jumpForce * -9.8f);
 
-        player.PlayerVelocity = playerVelocity;
-        
-        _characterController.Move(playerVelocity * Time.deltaTime);
-
-        return Vector3.zero;
+        return playerVelocity;
+    }
+    
+    private void ChangeSettings(Vector3 jumpStartUp, float jumpForce)
+    {
+        _jumpStartUp = jumpStartUp;
+        _jumpForce = jumpForce;
     }
 }

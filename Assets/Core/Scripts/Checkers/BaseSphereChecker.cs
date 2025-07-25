@@ -2,9 +2,17 @@ using UnityEngine;
 
 public abstract class BaseSphereChecker : MonoBehaviour
 {
+	public virtual bool CheckArea(LayerMask toStandLayer, Vector3 positionOfCheck, float radiusOfCheck)
+	{
+	    return Physics.CheckSphere
+        (
+            SumPosition(transform.position, positionOfCheck),
+            radiusOfCheck,
+            toStandLayer
+        );
+	}
 
-
-    private virtual Vector3 SumPosition(Vector3 center, Vector3 checkingPosition)
+    private Vector3 SumPosition(Vector3 center, Vector3 checkingPosition)
 	{
 		return new Vector3
 		(
@@ -13,8 +21,4 @@ public abstract class BaseSphereChecker : MonoBehaviour
 			transform.localPosition.z + checkingPosition.z
 		);
 	}
-	
-	private abstract void OnDrawGizmos() {
-        // dsfafsfds
-    }
 }

@@ -41,8 +41,6 @@ public class Player : MonoBehaviour
     
     [field: SerializeField] public CharacterController CharacterController { get; private set; }
     
-    [field: SerializeField] public PositionSummer PositionSummer { get; private set; }
-    
     [field: SerializeField] public IsGroundedChecker IsGroundedChecker { get; private set; }
     [field: SerializeField] public IsObstacleAboveChecker IsObstacleAboveChecker { get; private set; }
 
@@ -75,7 +73,7 @@ public class Player : MonoBehaviour
         IsPlayerGrounded = IsGroundedChecker.IsGrounded();
     
         PlayerInput.UpdateInput();
-        UpdateGravitationForce(PlayerGravitation.Gravitate(PlayerVelocity, IsPlayerGrounded, _inspectGravityValue, _passiveStress));
+        UpdateVelocity(PlayerGravitation.Gravitate(PlayerVelocity, IsPlayerGrounded, _inspectGravityValue, _passiveStress));
     }
 
     public void OnLook(Vector2 delta) 
@@ -93,7 +91,7 @@ public class Player : MonoBehaviour
     
     public void OnJump()
     {
-        UpdateGravitationForce(PlayerJumper.Jump(this).y);
+        UpdateVelocity(PlayerJumper.Jump(this).y);
     }
 
     public void SetSettings()
@@ -138,9 +136,9 @@ public class Player : MonoBehaviour
             Debug.Log($"Jumping setting were changed. Jump start up equals {JumpStartUp}, jump force equals {JumpForce}");
     }
     
-    private void UpdateGravitationForce(float gravitationForce)
+    private void UpdateVelocity(float velocityByY)
     {
-        PlayerVelocity = new Vector3(PlayerVelocity.x, gravitationForce, PlayerVelocity.z);
+        PlayerVelocity = new Vector3(PlayerVelocity.x, velocityByY, PlayerVelocity.z);
     }
     
     private void GetPlayersComponents()
@@ -148,8 +146,6 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<Camera>();
         
         CharacterController = GetComponent<CharacterController>();
-
-        PositionSummer = new PositionSummer();
         
         IsGroundedChecker = GetComponent<IsGroundedChecker>();
         IsObstacleAboveChecker = GetComponent<IsObstacleAboveChecker>();
@@ -167,9 +163,6 @@ public class Player : MonoBehaviour
     
     private void InitializePlayer()
     {
-        IsGroundedChecker.Initialize(PositionSummer);
-        IsObstacleAboveChecker.Initialize(PositionSummer);
-    
         PlayerInput.Initialize(this);
         PlayerLooker.Initialize(this);
         PlayerMover.Initialize(this);

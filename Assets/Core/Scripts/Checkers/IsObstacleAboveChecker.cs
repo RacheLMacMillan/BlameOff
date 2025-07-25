@@ -1,21 +1,19 @@
 using UnityEngine;
 
-public class IsObstacleAboveChecker : MonoBehaviour, IInitializable<PositionSummer>
+public class IsObstacleAboveChecker : BaseSphereChecker
 {
-    private PositionSummer _positionSummer;
-
-    public void Initialize(PositionSummer positionSummer)
+    [SerializeField] private LayerMask _toStandLayer;
+	[SerializeField] private Vector3 _positionOfCheck;
+	[SerializeField] private float _radiusOfCheck;
+	
+    public bool IsObstaclesAbove()
     {
-        _positionSummer = positionSummer;
+        return base.CheckArea(_toStandLayer, _positionOfCheck, _radiusOfCheck);
     }
-    
-    public void IsObstaclesAbove()
+
+    private void OnDrawGizmos()
     {
-        // return Physics.CheckSphere
-        // (
-        //     _positionSummer.SumPosition(transform.position, _positionOfCheck),
-        //     _radiusOfCheck,
-        //     _toStandLayer
-        // );
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_positionOfCheck, _radiusOfCheck);
     }
 }

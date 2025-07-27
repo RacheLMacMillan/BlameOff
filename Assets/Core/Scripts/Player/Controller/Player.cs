@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     [field: SerializeField, Min(0)] public float JumpForce { get; private set; }
     [field: SerializeField, Min(0)] public Vector3 JumpStartUp { get; private set; }
     
+    [field: SerializeField] public bool IsGrounded { get; private set; }
+    [field: SerializeField] public bool IsObstaclesAbove { get; private set; }
+    
     [Header("User settings")]
     [field: SerializeField, Min(0), Range(0, 1)] public float XSensitivity { get; private set; }
     [field: SerializeField, Min(0), Range(0, 1)] public float YSensitivity { get; private set; }
@@ -26,8 +29,6 @@ public class Player : MonoBehaviour
     [Header("Gravitation")]
     [SerializeField] private float _inspectGravityValue;
     [SerializeField] private float _passiveStress;
-    
-    [field: SerializeField] public bool IsPlayerGrounded { get; private set; }
     
     [Header("Debug settings")]
     [SerializeField] private bool _isDebuggingOn;
@@ -70,10 +71,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        IsPlayerGrounded = IsGroundedChecker.IsGrounded();
+        IsGrounded = IsGroundedChecker.IsGrounded();
+        IsObstaclesAbove = IsObstacleAboveChecker.IsObstaclesAbove();
     
         PlayerInput.UpdateInput();
-        UpdateVelocity(PlayerGravitation.Gravitate(PlayerVelocity, IsPlayerGrounded, _inspectGravityValue, _passiveStress));
+        UpdateVelocity(PlayerGravitation.Gravitate(PlayerVelocity, IsGrounded, _inspectGravityValue, _passiveStress));
     }
 
     public void OnLook(Vector2 delta) 
@@ -91,7 +93,7 @@ public class Player : MonoBehaviour
     
     public void OnJump()
     {
-        UpdateVelocity(PlayerJumper.Jump(this).y);
+        UpdateVelocity(PlayerJumper.Jump(PlayerVelocity, IsGrounded, IsObstaclesAbove).y);
     }
 
     public void SetSettings()

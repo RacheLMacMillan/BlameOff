@@ -33,10 +33,6 @@ public class Player : MonoBehaviour
     [Header("Debug settings")]
     [SerializeField] private bool _isDebuggingOn;
     
-    public event Action<float> OnMoveSpeedChanged;
-    public event Action<float, float> OnCameraSettingsChanged;
-    public event Action<Vector3, float> OnJumpingSettingsChanged;
-    
     [Header("Components")]
     [field: SerializeField] public Camera Camera { get; private set; }
     
@@ -50,6 +46,10 @@ public class Player : MonoBehaviour
     [field: SerializeField] public PlayerLooker PlayerLooker { get; private set; }
     [field: SerializeField] public PlayerMover PlayerMover { get; private set; }
     [field: SerializeField] public PlayerJumper PlayerJumper { get; private set; }
+    
+    public event Action<float> OnMoveSpeedChanged;
+    public event Action<float, float> OnCameraSettingsChanged;
+    public event Action<Vector3, float> OnJumpingSettingsChanged;
     
     private void Awake()
     {    

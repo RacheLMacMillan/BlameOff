@@ -5730,12 +5730,13 @@ MonoBehaviour:
   <CrouchSpeed>k__BackingField: 0
   <JumpForce>k__BackingField: 2.5
   <JumpStartUp>k__BackingField: {x: 0, y: 0.1, z: 0}
+  <IsGrounded>k__BackingField: 0
+  <IsObstaclesAbove>k__BackingField: 0
   <XSensitivity>k__BackingField: 5
   <YSensitivity>k__BackingField: 5
   <PlayerVelocity>k__BackingField: {x: 0, y: 0, z: 0}
   _inspectGravityValue: -9.81
   _passiveStress: -2
-  <IsPlayerGrounded>k__BackingField: 0
   _isDebuggingOn: 0
   <Camera>k__BackingField: {fileID: 0}
   <CharacterController>k__BackingField: {fileID: 0}
@@ -5826,7 +5827,7 @@ MonoBehaviour:
   _toStandLayer:
     serializedVersion: 2
     m_Bits: 1073741879
-  _positionOfCheck: {x: 0, y: 2, z: 0}
+  _positionOfCheck: {x: 0, y: 1.55, z: 0}
   _radiusOfCheck: 0.5
 --- !u!1 &329931723
 GameObject:

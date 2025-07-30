@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [field: SerializeField, Min(0)] public Vector3 JumpStartUp { get; private set; }
     
     [field: SerializeField] public bool IsGrounded { get; private set; }
-    [field: SerializeField] public bool IsObstaclesAbove { get; private set; }
+    [field: SerializeField] public bool IsObstacleAbove { get; private set; }
     
     [Header("User settings")]
     [field: SerializeField, Min(0), Range(0, 1)] public float XSensitivity { get; private set; }
@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     
     [field: SerializeField] public IsGroundedChecker IsGroundedChecker { get; private set; }
     [field: SerializeField] public IsObstacleAboveChecker IsObstacleAboveChecker { get; private set; }
+    [field: SerializeField] public JumpCollisionDetector JumpCollisionDetector { get; private set; }
 
     [field: SerializeField] public PlayerGravitation PlayerGravitation { get; private set; }
     [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
@@ -61,18 +62,21 @@ public class Player : MonoBehaviour
     {
         PlayerInput.OnPlayerLooking += OnLook;
         PlayerInput.OnPlayerMoving += OnMove;
+        JumpCollisionDetector.PlayerCollideWithSomethingFromAbove += ResetVelocityByY;
     }
 
     private void OnDisable()
     {
         PlayerInput.OnPlayerLooking -= OnLook;
         PlayerInput.OnPlayerMoving -= OnMove;
+        JumpCollisionDetector.PlayerCollideWithSomethingFromAbove -= ResetVelocityByY;
     }
 
     private void Update()
     {
         IsGrounded = IsGroundedChecker.IsGrounded();
-        IsObstaclesAbove = IsObstacleAboveChecker.IsObstaclesAbove();
+        IsObstacleAbove = IsObstacleAboveChecker.IsObstaclesAbove();
+        JumpCollisionDetector.DetectCollisionFromAbove(IsGrounded, IsObstacleAbove);
     
         PlayerInput.UpdateInput();
         UpdateVelocity(PlayerGravitation.Gravitate(PlayerVelocity, IsGrounded, _inspectGravityValue, _passiveStress));
@@ -93,7 +97,7 @@ public class Player : MonoBehaviour
     
     public void OnJump()
     {
-        UpdateVelocity(PlayerJumper.Jump(PlayerVelocity, IsGrounded, IsObstaclesAbove).y);
+        UpdateVelocity(PlayerJumper.Jump(PlayerVelocity, IsGrounded, IsObstacleAbove).y);
     }
 
     public void SetSettings()
@@ -143,6 +147,11 @@ public class Player : MonoBehaviour
         PlayerVelocity = new Vector3(PlayerVelocity.x, velocityByY, PlayerVelocity.z);
     }
     
+    private void ResetVelocityByY()
+    {
+        PlayerVelocity = new Vector3(PlayerVelocity.x, 0, PlayerVelocity.z);
+    }
+    
     private void GetPlayersComponents()
     {
         Camera = GetComponentInChildren<Camera>();
@@ -152,6 +161,7 @@ public class Player : MonoBehaviour
         IsGroundedChecker = GetComponent<IsGroundedChecker>();
         IsObstacleAboveChecker = GetComponent<IsObstacleAboveChecker>();
 
+        JumpCollisionDetector = new JumpCollisionDetector();
         PlayerGravitation = new PlayerGravitation(CharacterController);
     
         PlayerInput = GetComponent<PlayerInput>();

@@ -28,7 +28,7 @@ public class PlayerJumper : MonoBehaviour, IInitializable<Player>, IJumpable<Vec
         {
             throw new ArgumentOutOfRangeException("Player isn't grounded.");
         }
-        if (isObstacleAbove == false)
+        if (isObstacleAbove == true)
         {
             throw new ArgumentOutOfRangeException("There is something from above.");
         }

@@ -15,15 +15,8 @@ public class PlayerLooker : MonoBehaviour, IInitializable<Player>
 
     public event Action<float, float> OnSensitivityChanged;
 
-    private void OnEnable()
-    {
-        _player.OnCameraSettingsChanged += SetNewSettings;
-    }
-
-    private void OnDisable()
-    {
-        _player.OnCameraSettingsChanged -= SetNewSettings;
-    }
+    private void OnEnable() => _player.OnCameraSettingsChanged += SetNewSettings;
+    private void OnDisable() => _player.OnCameraSettingsChanged -= SetNewSettings;
 
     public void Initialize(Player player)
     {

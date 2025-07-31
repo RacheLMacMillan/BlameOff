@@ -13,37 +13,44 @@ public class Player : MonoBehaviour
     [field: SerializeField, Min(1), Range(1, 10)] public float SpringSpeed { get; private set; }
     [field: SerializeField, Min(0), Range(0, 1)] public float CrouchSpeed { get; private set; }
     
-    [field: SerializeField, Min(0), Range(0, 1)] public float JumpForce { get; private set; }
+    [field: SerializeField, Min(0)] public float JumpForce { get; private set; }
+    [field: SerializeField, Min(0)] public Vector3 JumpStartUp { get; private set; }
+    
+    [field: SerializeField] public bool IsGrounded { get; private set; }
+    [field: SerializeField] public bool IsObstacleAbove { get; private set; }
     
     [Header("User settings")]
     [field: SerializeField, Min(0), Range(0, 1)] public float XSensitivity { get; private set; }
     [field: SerializeField, Min(0), Range(0, 1)] public float YSensitivity { get; private set; }
+
+    [Header("Do not touch!")]
+    [field: SerializeField] public Vector3 PlayerVelocity { get; set; }
+
+    [Header("Gravitation")]
+    [SerializeField] private float _inspectGravityValue;
+    [SerializeField] private float _passiveStress;
+    
+    [Header("Debug settings")]
+    [SerializeField] private bool _isDebuggingOn;
     
     [Header("Components")]
     [field: SerializeField] public Camera Camera { get; private set; }
     
     [field: SerializeField] public CharacterController CharacterController { get; private set; }
+    
+    [field: SerializeField] public IsGroundedChecker IsGroundedChecker { get; private set; }
+    [field: SerializeField] public IsObstacleAboveChecker IsObstacleAboveChecker { get; private set; }
+    [field: SerializeField] public JumpCollisionDetector JumpCollisionDetector { get; private set; }
 
     [field: SerializeField] public PlayerGravitation PlayerGravitation { get; private set; }
     [field: SerializeField] public PlayerInput PlayerInput { get; private set; }
     [field: SerializeField] public PlayerLooker PlayerLooker { get; private set; }
     [field: SerializeField] public PlayerMover PlayerMover { get; private set; }
     [field: SerializeField] public PlayerJumper PlayerJumper { get; private set; }
-
-    [Header("Do not touch!")]
-    [field: SerializeField] public Vector3 PlayerVelocity { get; private set; }
-
-    [Header("Gravitation")]
-    [SerializeField] private float _inspectGravityValue;
-    [SerializeField] private float _passiveStress;
-    
-    [SerializeField] private bool _isPlayerGrounded => CharacterController.isGrounded;
-    
-    [Header("Debug settings")]
-    [SerializeField] private bool _isDebuggingOn;
     
     public event Action<float> OnMoveSpeedChanged;
     public event Action<float, float> OnCameraSettingsChanged;
+    public event Action<Vector3, float> OnJumpingSettingsChanged;
     
     private void Awake()
     {    
@@ -55,18 +62,24 @@ public class Player : MonoBehaviour
     {
         PlayerInput.OnPlayerLooking += OnLook;
         PlayerInput.OnPlayerMoving += OnMove;
+        JumpCollisionDetector.PlayerCollideWithSomethingFromAbove += ResetVelocityByY;
     }
 
     private void OnDisable()
     {
         PlayerInput.OnPlayerLooking -= OnLook;
         PlayerInput.OnPlayerMoving -= OnMove;
+        JumpCollisionDetector.PlayerCollideWithSomethingFromAbove -= ResetVelocityByY;
     }
 
     private void Update()
     {
+        IsGrounded = IsGroundedChecker.IsGrounded();
+        IsObstacleAbove = IsObstacleAboveChecker.IsObstaclesAbove();
+        JumpCollisionDetector.DetectCollisionFromAbove(IsGrounded, IsObstacleAbove);
+    
         PlayerInput.UpdateInput();
-        UpdateGravitationForce(PlayerGravitation.Gravitate(PlayerVelocity, _isPlayerGrounded, _inspectGravityValue, _passiveStress));
+        UpdateVelocity(PlayerGravitation.Gravitate(PlayerVelocity, IsGrounded, _inspectGravityValue, _passiveStress));
     }
 
     public void OnLook(Vector2 delta) 
@@ -84,13 +97,14 @@ public class Player : MonoBehaviour
     
     public void OnJump()
     {
-        PlayerVelocity = PlayerJumper.Jump(PlayerVelocity, CharacterController.isGrounded);
+        UpdateVelocity(PlayerJumper.Jump(PlayerVelocity, IsGrounded, IsObstacleAbove).y);
     }
 
     public void SetSettings()
     {
         ChangeMoveSpeed(MoveSpeed);
         ChangeCameraSettings(XSensitivity, YSensitivity);
+        ChangeJumpingSettings(JumpStartUp, JumpForce);
         
         if (_isDebuggingOn)
             Debug.Log("Core Setting were set.");
@@ -116,15 +130,26 @@ public class Player : MonoBehaviour
         if (_isDebuggingOn)
             Debug.Log($"Move speed was changed. It equals {MoveSpeed}.");
     }
-
-    private void UpdateVelocity(Vector3 velocity)
+    
+    private void ChangeJumpingSettings(Vector3 jumpStartUp, float jumpForce)
     {
-        PlayerVelocity = velocity;
+        JumpForce = jumpForce;
+        JumpStartUp = jumpStartUp;
+
+        OnJumpingSettingsChanged?.Invoke(JumpStartUp, JumpForce);
+        
+        if (_isDebuggingOn)
+            Debug.Log($"Jumping setting were changed. Jump start up equals {JumpStartUp}, jump force equals {JumpForce}");
     }
     
-    private void UpdateGravitationForce(float gravitationForce)
+    private void UpdateVelocity(float velocityByY)
     {
-        PlayerVelocity = new Vector3(PlayerVelocity.x, gravitationForce, PlayerVelocity.z);
+        PlayerVelocity = new Vector3(PlayerVelocity.x, velocityByY, PlayerVelocity.z);
+    }
+    
+    private void ResetVelocityByY()
+    {
+        PlayerVelocity = new Vector3(PlayerVelocity.x, 0, PlayerVelocity.z);
     }
     
     private void GetPlayersComponents()
@@ -132,13 +157,17 @@ public class Player : MonoBehaviour
         Camera = GetComponentInChildren<Camera>();
         
         CharacterController = GetComponent<CharacterController>();
+        
+        IsGroundedChecker = GetComponent<IsGroundedChecker>();
+        IsObstacleAboveChecker = GetComponent<IsObstacleAboveChecker>();
 
-        PlayerGravitation = new PlayerGravitation(this);
-        PlayerJumper = new PlayerJumper(CharacterController, JumpForce);
+        JumpCollisionDetector = new JumpCollisionDetector();
+        PlayerGravitation = new PlayerGravitation(CharacterController);
     
         PlayerInput = GetComponent<PlayerInput>();
         PlayerLooker = GetComponent<PlayerLooker>();
         PlayerMover = GetComponent<PlayerMover>();
+        PlayerJumper = GetComponent<PlayerJumper>();
         
         if (_isDebuggingOn)
             Debug.Log("The components are gotten.");
@@ -149,6 +178,7 @@ public class Player : MonoBehaviour
         PlayerInput.Initialize(this);
         PlayerLooker.Initialize(this);
         PlayerMover.Initialize(this);
+        PlayerJumper.Initialize(this);
         
         if (_isDebuggingOn)
             Debug.Log("The components are initialized.");

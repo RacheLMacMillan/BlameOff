@@ -9,15 +9,8 @@ public class PlayerMover : MonoBehaviour, IInitializable<Player>, IMoveable<Vect
     
     private Player _player;
 
-    private void OnEnable()
-    {
-        _player.OnMoveSpeedChanged += SetSetting;
-    }
-
-    private void OnDisable()
-    {
-        _player.OnMoveSpeedChanged -= SetSetting;
-    }
+    private void OnEnable() => _player.OnMoveSpeedChanged += SetSetting;
+    private void OnDisable() => _player.OnMoveSpeedChanged -= SetSetting;
 
     public void Initialize(Player player)
     {

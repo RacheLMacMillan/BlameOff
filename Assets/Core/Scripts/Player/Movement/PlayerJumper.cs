@@ -1,30 +1,50 @@
 using System;
 using UnityEngine;
 
-public class PlayerJumper : IJumpable<Vector3, bool>
+public class PlayerJumper : MonoBehaviour, IInitializable<Player>, IJumpable<Vector3, bool, bool>
 {
-    private CharacterController _characterController;
-
     private float _jumpForce;
 
-    public PlayerJumper(CharacterController characterController, float jumpForce)
-    {
-        _jumpForce = jumpForce;
+    private Vector3 _jumpStartUp;
+    
+    private Player _player;
 
-        _characterController = characterController;
+    public event Action OnJumped;
+
+    public void Initialize(Player player)
+    {
+        _player = player;
+        
+        _jumpStartUp = player.JumpStartUp;
+        _jumpForce = player.JumpForce;
     }
 
-    public Vector3 Jump(Vector3 playerVelocity, bool isGrounded)
+    private void OnEnable() => _player.OnJumpingSettingsChanged += ChangeSettings;
+    private void OnDisable() => _player.OnJumpingSettingsChanged -= ChangeSettings;
+
+    public Vector3 Jump(Vector3 playerVelocity, bool isGrounded, bool isObstacleAbove)
     {
         if (isGrounded == false)
         {
-            throw new ArgumentOutOfRangeException("Player isn't grounded");
+            throw new ArgumentOutOfRangeException("Player isn't grounded.");
         }
-
-        playerVelocity.y = Mathf.Sqrt(-_jumpForce * -9.8f) * Time.deltaTime;
+        if (isObstacleAbove == true)
+        {
+            throw new ArgumentOutOfRangeException("There is something from above.");
+        }
         
-        _characterController.Move(playerVelocity);
+        transform.position += _jumpStartUp;
+        
+        playerVelocity.y = Mathf.Sqrt(-_jumpForce * -9.8f);
 
-        return playerVelocity * Time.deltaTime;
+        OnJumped?.Invoke();
+
+        return playerVelocity;
+    }
+    
+    private void ChangeSettings(Vector3 jumpStartUp, float jumpForce)
+    {
+        _jumpStartUp = jumpStartUp;
+        _jumpForce = jumpForce;
     }
 }

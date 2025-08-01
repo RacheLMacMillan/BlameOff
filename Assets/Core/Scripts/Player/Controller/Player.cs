@@ -4,6 +4,10 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(PlayerLooker))]
 [RequireComponent(typeof(PlayerMover))]
+[RequireComponent(typeof(PlayerJumper))]
+[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(IsGroundedChecker))]
+[RequireComponent(typeof(IsObstacleAboveChecker))]
 public class Player : MonoBehaviour
 {
     [Header("Core settings")]
@@ -76,6 +80,7 @@ public class Player : MonoBehaviour
     {
         IsGrounded = IsGroundedChecker.IsGrounded();
         IsObstacleAbove = IsObstacleAboveChecker.IsObstaclesAbove();
+        
         JumpCollisionDetector.DetectCollisionFromAbove(IsGrounded, IsObstacleAbove);
     
         PlayerInput.UpdateInput();
@@ -149,7 +154,7 @@ public class Player : MonoBehaviour
     
     private void ResetVelocityByY()
     {
-        PlayerVelocity = new Vector3(PlayerVelocity.x, 0, PlayerVelocity.z);
+        PlayerVelocity = new Vector3(PlayerVelocity.x, -1, PlayerVelocity.z);
     }
     
     private void GetPlayersComponents()
@@ -160,8 +165,9 @@ public class Player : MonoBehaviour
         
         IsGroundedChecker = GetComponent<IsGroundedChecker>();
         IsObstacleAboveChecker = GetComponent<IsObstacleAboveChecker>();
-
+        
         JumpCollisionDetector = new JumpCollisionDetector();
+
         PlayerGravitation = new PlayerGravitation(CharacterController);
     
         PlayerInput = GetComponent<PlayerInput>();

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class PlayerJumper : MonoBehaviour, IInitializable<Player>, IJumpable<Vector3, bool, bool>
 {
-    private float _jumpForce;
+    [SerializeField] private Vector3 _jumpStartUp;
 
-    private Vector3 _jumpStartUp;
+    private float _jumpForce;
     
     private Player _player;
 
@@ -15,7 +15,6 @@ public class PlayerJumper : MonoBehaviour, IInitializable<Player>, IJumpable<Vec
     {
         _player = player;
         
-        _jumpStartUp = player.JumpStartUp;
         _jumpForce = player.JumpForce;
     }
 
@@ -42,9 +41,8 @@ public class PlayerJumper : MonoBehaviour, IInitializable<Player>, IJumpable<Vec
         return playerVelocity;
     }
     
-    private void ChangeSettings(Vector3 jumpStartUp, float jumpForce)
+    private void ChangeSettings(float jumpForce)
     {
-        _jumpStartUp = jumpStartUp;
         _jumpForce = jumpForce;
     }
 }

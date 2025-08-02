@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
     [field: SerializeField, Min(0), Range(0, 1)] public float CrouchSpeed { get; private set; }
     
     [field: SerializeField, Min(0)] public float JumpForce { get; private set; }
-    [field: SerializeField, Min(0)] public Vector3 JumpStartUp { get; private set; }
     
     [field: SerializeField] public bool IsGrounded { get; private set; }
     [field: SerializeField] public bool IsObstacleAbove { get; private set; }
@@ -54,7 +53,7 @@ public class Player : MonoBehaviour
     
     public event Action<float> OnMoveSpeedChanged;
     public event Action<float, float> OnCameraSettingsChanged;
-    public event Action<Vector3, float> OnJumpingSettingsChanged;
+    public event Action<float> OnJumpingSettingsChanged;
     
     private void Awake()
     {    
@@ -109,7 +108,7 @@ public class Player : MonoBehaviour
     {
         ChangeMoveSpeed(MoveSpeed);
         ChangeCameraSettings(XSensitivity, YSensitivity);
-        ChangeJumpingSettings(JumpStartUp, JumpForce);
+        ChangeJumpingSettings(JumpForce);
         
         if (_isDebuggingOn)
             Debug.Log("Core Setting were set.");
@@ -136,15 +135,14 @@ public class Player : MonoBehaviour
             Debug.Log($"Move speed was changed. It equals {MoveSpeed}.");
     }
     
-    private void ChangeJumpingSettings(Vector3 jumpStartUp, float jumpForce)
+    private void ChangeJumpingSettings(float jumpForce)
     {
         JumpForce = jumpForce;
-        JumpStartUp = jumpStartUp;
 
-        OnJumpingSettingsChanged?.Invoke(JumpStartUp, JumpForce);
+        OnJumpingSettingsChanged?.Invoke(JumpForce);
         
         if (_isDebuggingOn)
-            Debug.Log($"Jumping setting were changed. Jump start up equals {JumpStartUp}, jump force equals {JumpForce}");
+            Debug.Log($"Jumping setting were changed. Jump force equals {JumpForce}");
     }
     
     private void UpdateVelocity(float velocityByY)

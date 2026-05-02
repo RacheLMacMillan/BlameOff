@@ -67,5 +67,7 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "BlameOff.slnx"
+    "dotnet.defaultSolution": "BlameOff.slnx",
+    "editor.fontSize": 20,
+    "editor.lineHeight": 1.25
 }

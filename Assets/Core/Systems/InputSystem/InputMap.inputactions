@@ -106,15 +106,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "CheckMagazine",
-                    "type": "Button",
-                    "id": "39acb1be-3258-4f0f-8968-ba6e71139440",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "ThrowGrenade",
                     "type": "Button",
                     "id": "7977cb6c-1753-47f3-8220-780bab842e24",
@@ -303,7 +294,7 @@
                     "name": "",
                     "id": "bf0459c7-b301-4522-bff3-5cf1e25fec1d",
                     "path": "<Keyboard>/r",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "Hold",
                     "processors": "",
                     "groups": ";MouseAndKeyboard",
                     "action": "Reload",
@@ -340,17 +331,6 @@
                     "processors": "",
                     "groups": ";MouseAndKeyboard",
                     "action": "QuickHeal",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4268d605-eea7-4804-a7ba-390716d07faa",
-                    "path": "<Keyboard>/r",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": ";MouseAndKeyboard",
-                    "action": "CheckMagazine",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

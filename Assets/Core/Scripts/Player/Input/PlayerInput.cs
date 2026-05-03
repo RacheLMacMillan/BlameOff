@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public Action<Vector3> OnPlayerMoved;
+    public Action<Vector3> OnPlayerMove;
     public Action<Vector2> OnPlayerLook;
 
     private InputMap _inputMap;
@@ -15,12 +15,15 @@ public class PlayerInput : MonoBehaviour
     {
         _inputMap = new InputMap();
         _onFoot = _inputMap.OnFoot;
+        
+        _onFoot.Reload.canceled += context => Debug.Log("Reload");
+        _onFoot.Reload.performed += context => Debug.Log("Check magazine");
     }
 
     private void Update()
     {
         if (_onFoot.Move.ReadValue<Vector2>() != Vector2.zero)
-            OnPlayerMoved?.Invoke(ScaleDirection(_onFoot.Move.ReadValue<Vector2>()));
+            OnPlayerMove?.Invoke(ScaleDirection(_onFoot.Move.ReadValue<Vector2>()));
         if (_onFoot.Look.ReadValue<Vector2>() != Vector2.zero)
             OnPlayerLook?.Invoke(_onFoot.Look.ReadValue<Vector2>());
     }
@@ -32,4 +35,6 @@ public class PlayerInput : MonoBehaviour
     {
         return new Vector3(direction.x, 0, direction.y);
     }
+    
+    
 }

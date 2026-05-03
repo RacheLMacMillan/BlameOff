@@ -192,15 +192,6 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""CheckMagazine"",
-                    ""type"": ""Button"",
-                    ""id"": ""39acb1be-3258-4f0f-8968-ba6e71139440"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""ThrowGrenade"",
                     ""type"": ""Button"",
                     ""id"": ""7977cb6c-1753-47f3-8220-780bab842e24"",
@@ -389,7 +380,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""bf0459c7-b301-4522-bff3-5cf1e25fec1d"",
                     ""path"": ""<Keyboard>/r"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
                     ""groups"": "";MouseAndKeyboard"",
                     ""action"": ""Reload"",
@@ -426,17 +417,6 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";MouseAndKeyboard"",
                     ""action"": ""QuickHeal"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4268d605-eea7-4804-a7ba-390716d07faa"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": ""Hold"",
-                    ""processors"": """",
-                    ""groups"": "";MouseAndKeyboard"",
-                    ""action"": ""CheckMagazine"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -486,7 +466,6 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         m_OnFoot_Climb = m_OnFoot.FindAction("Climb", throwIfNotFound: true);
         m_OnFoot_Interact = m_OnFoot.FindAction("Interact", throwIfNotFound: true);
         m_OnFoot_Reload = m_OnFoot.FindAction("Reload", throwIfNotFound: true);
-        m_OnFoot_CheckMagazine = m_OnFoot.FindAction("CheckMagazine", throwIfNotFound: true);
         m_OnFoot_ThrowGrenade = m_OnFoot.FindAction("ThrowGrenade", throwIfNotFound: true);
         m_OnFoot_QuickHeal = m_OnFoot.FindAction("QuickHeal", throwIfNotFound: true);
     }
@@ -580,7 +559,6 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Climb;
     private readonly InputAction m_OnFoot_Interact;
     private readonly InputAction m_OnFoot_Reload;
-    private readonly InputAction m_OnFoot_CheckMagazine;
     private readonly InputAction m_OnFoot_ThrowGrenade;
     private readonly InputAction m_OnFoot_QuickHeal;
     /// <summary>
@@ -638,10 +616,6 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "OnFoot/Reload".
         /// </summary>
         public InputAction @Reload => m_Wrapper.m_OnFoot_Reload;
-        /// <summary>
-        /// Provides access to the underlying input action "OnFoot/CheckMagazine".
-        /// </summary>
-        public InputAction @CheckMagazine => m_Wrapper.m_OnFoot_CheckMagazine;
         /// <summary>
         /// Provides access to the underlying input action "OnFoot/ThrowGrenade".
         /// </summary>
@@ -709,9 +683,6 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
-            @CheckMagazine.started += instance.OnCheckMagazine;
-            @CheckMagazine.performed += instance.OnCheckMagazine;
-            @CheckMagazine.canceled += instance.OnCheckMagazine;
             @ThrowGrenade.started += instance.OnThrowGrenade;
             @ThrowGrenade.performed += instance.OnThrowGrenade;
             @ThrowGrenade.canceled += instance.OnThrowGrenade;
@@ -762,9 +733,6 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
-            @CheckMagazine.started -= instance.OnCheckMagazine;
-            @CheckMagazine.performed -= instance.OnCheckMagazine;
-            @CheckMagazine.canceled -= instance.OnCheckMagazine;
             @ThrowGrenade.started -= instance.OnThrowGrenade;
             @ThrowGrenade.performed -= instance.OnThrowGrenade;
             @ThrowGrenade.canceled -= instance.OnThrowGrenade;
@@ -914,13 +882,6 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReload(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "CheckMagazine" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCheckMagazine(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "ThrowGrenade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

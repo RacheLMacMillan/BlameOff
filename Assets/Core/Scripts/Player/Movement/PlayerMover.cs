@@ -14,8 +14,8 @@ public class PlayerMover : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
     }
 
-    private void OnEnable() => _playerInput.OnPlayerMove += Move;
-    private void OnDisable() => _playerInput.OnPlayerMove -= Move;
+    private void OnEnable() => _playerInput.OnMoveInputted += Move;
+    private void OnDisable() => _playerInput.OnMoveInputted -= Move;
 
     private void Move(Vector3 direction)
     {

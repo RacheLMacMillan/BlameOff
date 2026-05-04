@@ -18,8 +18,8 @@ public class PlayerLooker : MonoBehaviour
 		_camera = GetComponentInChildren<Camera>();
 	}
 
-    private void OnEnable() => _playerInput.OnPlayerLook += Look;
-    private void OnDisable() => _playerInput.OnPlayerLook -= Look;
+    private void OnEnable() => _playerInput.OnLookInputted += Look;
+    private void OnDisable() => _playerInput.OnLookInputted -= Look;
 
     private void Look(Vector2 mouseDelta)
 	{

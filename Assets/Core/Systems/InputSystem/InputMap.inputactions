@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Laydown",
+                    "name": "Liedown",
                     "type": "Button",
                     "id": "a10f61f0-84f5-479f-855b-7f104ddbb92f",
                     "expectedControlType": "",
@@ -46,6 +46,24 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "90e8509a-f72d-4e25-9885-c2a6a2f5bbbe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Climb",
+                    "type": "Button",
+                    "id": "cca1fee0-f65e-46a9-9ed1-9b3f8f312757",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "46500e5b-339e-40ee-89bb-9dc0db899afe",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -79,30 +97,12 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Climb",
-                    "type": "Button",
-                    "id": "cca1fee0-f65e-46a9-9ed1-9b3f8f312757",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "46500e5b-339e-40ee-89bb-9dc0db899afe",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Reload",
                     "type": "Button",
                     "id": "e9a79643-3cb3-4da5-aa25-839d0a82fd6a",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 },
                 {
@@ -231,7 +231,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";MouseAndKeyboard",
-                    "action": "Laydown",
+                    "action": "Liedown",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -294,7 +294,7 @@
                     "name": "",
                     "id": "bf0459c7-b301-4522-bff3-5cf1e25fec1d",
                     "path": "<Keyboard>/r",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": ";MouseAndKeyboard",
                     "action": "Reload",

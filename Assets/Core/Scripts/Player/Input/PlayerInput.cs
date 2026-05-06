@@ -10,6 +10,7 @@ public class PlayerInput : MonoBehaviour
     public Action OnLiedownInputted;
     public Action OnSprintInputted;
     public Action OnClimbInputted;
+    public Action OnJumpInputted;
           
     [Header("Weapon interactions")]
     public Action OnShootInputted;
@@ -62,6 +63,7 @@ public class PlayerInput : MonoBehaviour
         _onFoot.Liedown.performed += context => OnLiedownInputted?.Invoke();
         _onFoot.Sprint.performed += context => OnSprintInputted?.Invoke();
         _onFoot.Climb.performed += context => OnClimbInputted?.Invoke();
+        _onFoot.Jump.performed += context => OnJumpInputted?.Invoke();
     }
     
     private void SetWeaponInteraction()

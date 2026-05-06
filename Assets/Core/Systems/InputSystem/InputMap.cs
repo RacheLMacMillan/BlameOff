@@ -208,6 +208,15 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""f0554370-2ebe-483b-b543-7c04d49b36e0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -419,6 +428,17 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
                     ""action"": ""QuickHeal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cd58808-91e8-4215-8617-f51ee4f5313f"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";MouseAndKeyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -468,6 +488,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         m_OnFoot_Reload = m_OnFoot.FindAction("Reload", throwIfNotFound: true);
         m_OnFoot_ThrowGrenade = m_OnFoot.FindAction("ThrowGrenade", throwIfNotFound: true);
         m_OnFoot_QuickHeal = m_OnFoot.FindAction("QuickHeal", throwIfNotFound: true);
+        m_OnFoot_Jump = m_OnFoot.FindAction("Jump", throwIfNotFound: true);
     }
 
     ~@InputMap()
@@ -561,6 +582,7 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
     private readonly InputAction m_OnFoot_Reload;
     private readonly InputAction m_OnFoot_ThrowGrenade;
     private readonly InputAction m_OnFoot_QuickHeal;
+    private readonly InputAction m_OnFoot_Jump;
     /// <summary>
     /// Provides access to input actions defined in input action map "OnFoot".
     /// </summary>
@@ -624,6 +646,10 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "OnFoot/QuickHeal".
         /// </summary>
         public InputAction @QuickHeal => m_Wrapper.m_OnFoot_QuickHeal;
+        /// <summary>
+        /// Provides access to the underlying input action "OnFoot/Jump".
+        /// </summary>
+        public InputAction @Jump => m_Wrapper.m_OnFoot_Jump;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -689,6 +715,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @QuickHeal.started += instance.OnQuickHeal;
             @QuickHeal.performed += instance.OnQuickHeal;
             @QuickHeal.canceled += instance.OnQuickHeal;
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
         }
 
         /// <summary>
@@ -739,6 +768,9 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
             @QuickHeal.started -= instance.OnQuickHeal;
             @QuickHeal.performed -= instance.OnQuickHeal;
             @QuickHeal.canceled -= instance.OnQuickHeal;
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
         }
 
         /// <summary>
@@ -896,5 +928,12 @@ public partial class @InputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnQuickHeal(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Jump" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnJump(InputAction.CallbackContext context);
     }
 }

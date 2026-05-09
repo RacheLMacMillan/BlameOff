@@ -6,8 +6,8 @@ public class PlayerJumper : MonoBehaviour, IJumpable
 	[SerializeField] private float _jumpForce;
 	
 	[SerializeField] private Vector3 _jumpingStartUp;
+	[SerializeField] private Vector3 playerVelocity;
 	
-	private Vector3 playerVelocity;
     private PlayerInput _playerInput;
     private GroundedChecker _groundedChecker;
 	private CharacterController _characterController;
@@ -23,22 +23,13 @@ public class PlayerJumper : MonoBehaviour, IJumpable
 		_gravitation = new Gravitation();
 	}
 
-    void OnEnable()
-    {
-        _playerInput.OnJumpInputted += Jump;
-    }
-
-    void OnDisable()
-    {
-        _playerInput.OnJumpInputted -= Jump;
-    }
+    void OnEnable() => _playerInput.OnJumpInputted += Jump;
+    void OnDisable() => _playerInput.OnJumpInputted -= Jump;
 
     public void Jump()
 	{
 		if (_groundedChecker.IsGrounded == false)
-		{
 			throw new ArgumentException("Player must be on the ground before jumping.");
-		}
 		
 		transform.position += _jumpingStartUp;
 		
@@ -51,8 +42,7 @@ public class PlayerJumper : MonoBehaviour, IJumpable
 
     private void Update()
     {
-        // transform.position += _gravitation.GravitatePlayer(playerVelocity, _groundedChecker.IsGrounded);
-		_characterController.Move(playerVelocity * Time.deltaTime);
+		_characterController.Move(_gravitation.GravitatePlayer(playerVelocity, _groundedChecker.IsGrounded) * Time.deltaTime);
     }
     
     

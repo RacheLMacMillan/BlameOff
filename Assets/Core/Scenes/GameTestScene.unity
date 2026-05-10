@@ -1088,8 +1088,8 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_SkinWidth: 0.0001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1218046214
 MonoBehaviour:
@@ -1119,8 +1119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee20980283d15e42947ac4dd5bc5cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJumper
-  _jumpForce: 6.18
-  _jumpingStartUp: {x: 0, y: 0.03, z: 0}
+  _jumpForce: 2
+  _jumpingStartUp: {x: 0, y: 0, z: 0}
+  playerVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1218046216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1136,7 +1137,7 @@ MonoBehaviour:
   _detectLayers:
     serializedVersion: 2
     m_Bits: 55
-  _position: {x: 0, y: 0.47, z: 0}
+  _position: {x: 0, y: 0.495, z: 0}
   _radius: 0.5
 --- !u!1 &2078480250
 GameObject:

@@ -9,14 +9,12 @@ public class Gravitation
 	
 	public Vector3 GravitatePlayer(Vector3 velocity, bool isGrounded)
 	{
-        // isGrounded = true;
-        
 		velocity.y += _inspectGravityValue * Time.deltaTime;
 		
-		// if (isGrounded == true)
-		// {
-		// 	velocity.y = _passiveStress;
-		// }
+		if (isGrounded == true)
+		{
+			velocity.y = _passiveStress;
+		}
 		
 		return new Vector3(0, velocity.y, 0);
 	}

@@ -1,21 +1,25 @@
 using UnityEngine;
 
-public class Gravitation
+public abstract class Gravitation
 {
-    [SerializeField] private float _inspectGravityValue = -9.8f;
-	[SerializeField] private float _passiveStress = -2;
+    protected float _inspectGravityValue { get; private set; }
+	protected float _passiveStress { get; private set; }
 	
-	public Gravitation() {  }
-	
-	public Vector3 GravitatePlayer(Vector3 velocity, bool isGrounded)
+	public Gravitation(float inspectGravityValue, float passiveStress)
 	{
-		velocity.y += _inspectGravityValue * Time.deltaTime;
+		_inspectGravityValue = inspectGravityValue;
+		_passiveStress = passiveStress;
+	}
+	
+	public virtual float GravitatePlayer(float velocity, bool isGrounded)
+	{
+		velocity += _inspectGravityValue * Time.deltaTime;
 		
-		if (isGrounded == true)
-		{
-			velocity.y = _passiveStress;
-		}
+		// if (isGrounded == true)
+		// {
+		// 	velocity = _passiveStress;
+		// }
 		
-		return new Vector3(0, velocity.y, 0);
+		return velocity;
 	}
 }

@@ -1,4 +1,4 @@
 public interface IJumpable
 {
-    public void Jump();
+    public float Jump();
 }

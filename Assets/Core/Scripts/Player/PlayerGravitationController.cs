@@ -14,6 +14,7 @@ public class PlayerGravitationController : MonoBehaviour
 	[field: SerializeField, Range(0,1)] public float _waitForSecondBeforeGravitate;
 
     private PlayerInput _playerInput;
+    private PlayerJumper _playerJumper;
     private PlayerGravitation _playerGravitation;
     private GroundedChecker _groundedChecker;
 	private CharacterController _characterController;
@@ -26,6 +27,7 @@ public class PlayerGravitationController : MonoBehaviour
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
+        _playerJumper = GetComponent<PlayerJumper>();
         _groundedChecker = GetComponent<GroundedChecker>();
         _characterController = GetComponent<CharacterController>();
         
@@ -34,23 +36,32 @@ public class PlayerGravitationController : MonoBehaviour
     
     private void Update()
     {
+        Debug.Log(_groundedChecker.IsGrounded); 
+    
         if (_isPlayerJumping == false)
-		    _playerVelocity = _playerGravitation.GravitatePlayer(_playerVelocity, _groundedChecker.IsGrounded);
+		    _playerVelocity = _playerGravitation.BaseGravitate(_playerVelocity, _groundedChecker.IsGrounded);
     
 		_characterController.Move(new Vector3(0, _playerVelocity, 0) * Time.deltaTime);
     }
     
     private void StartGravitationCoroutine()
     {
-        StopGravitationPlayerCoroutine();
+        StartCoroutine(StopGravitationPlayerCoroutine());
     }
 
     private IEnumerator StopGravitationPlayerCoroutine()
     {
         _isPlayerJumping = true;
         
+        Debug.Log("Jumping true");
+        
+        _playerVelocity = _playerJumper.Jump();
+        
         yield return new WaitForSeconds(_waitForSecondBeforeGravitate);
         
         _isPlayerJumping = false;
+        
+        Debug.Log("Jumping false");
+        
     }
 }

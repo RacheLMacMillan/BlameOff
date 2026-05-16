@@ -1,3 +1,5 @@
+using Core.Scripts.Gravitation;
+
 namespace Core.Scripts.Player
 {
     public class PlayerGravitation : BaseGravitation

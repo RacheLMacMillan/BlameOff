@@ -3,7 +3,7 @@ using Core.Scripts.Player.Input;
 using Core.Scripts.Player.Movement;
 using UnityEngine;
 
-namespace Core.Scripts.Player
+namespace Core.Scripts.Player.Checkers
 {
 	public class PlayerVelocityController : MonoBehaviour
 	{

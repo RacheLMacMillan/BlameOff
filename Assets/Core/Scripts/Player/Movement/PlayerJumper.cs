@@ -14,6 +14,8 @@ namespace Core.Scripts.Player.Movement
 		private GroundedChecker _groundedChecker;
 	
 		public Action<float> OnPlayerJumped;
+		
+		[SerializeField] private bool _isDebugging;
 
 		public void Awake()
 		{
@@ -30,8 +32,9 @@ namespace Core.Scripts.Player.Movement
 				throw new ArgumentException("Player must be on the ground before jumping.");
 		
 			_playerLocalVelocity = Mathf.Sqrt(-_jumpForce * -9.8f);
-		
-			Debug.Log("Player was jumped " + _playerLocalVelocity);
+			
+			if (_isDebugging)
+				Debug.Log("Player was jumped " + _playerLocalVelocity);
 			OnPlayerJumped?.Invoke(_playerLocalVelocity);
 		}
 	}

@@ -1,27 +1,28 @@
 using UnityEngine;
 
-public abstract class BaseGravitation
+namespace Core.Scripts.Gravitation
 {
-    protected float _inspectGravityValue { get; private set; }
-	protected float _passiveStress { get; private set; }
-	
-	public BaseGravitation(float inspectGravityValue, float passiveStress)
+	public abstract class BaseGravitation
 	{
-		_inspectGravityValue = inspectGravityValue;
-		_passiveStress = passiveStress;
-	}
-	
-	public virtual float BaseGravitate(float velocity, bool isGrounded)
-	{
-		velocity += _inspectGravityValue * Time.deltaTime;
-		
-		if (isGrounded == true)
+		private float InspectGravityValue { get; set; }
+		private float PassiveStress { get; set; }
+
+		protected BaseGravitation(float inspectGravityValue, float passiveStress)
 		{
-			velocity = _passiveStress;
+			InspectGravityValue = inspectGravityValue;
+			PassiveStress = passiveStress;
 		}
+	
+		public virtual float BaseGravitate(float velocity, bool isGrounded)
+		{
+			velocity += InspectGravityValue * Time.deltaTime;
 		
-		Debug.Log("Gravitated");
+			if (isGrounded == true)
+			{
+				velocity = PassiveStress;
+			}
 		
-		return velocity;
+			return velocity;
+		}
 	}
 }

@@ -1,10 +1,8 @@
-public class PlayerGravitation : BaseGravitation
+namespace Core.Scripts.Player
 {
-    public PlayerGravitation(float inspectGravityValue, float passiveStress)
-        : base(inspectGravityValue, passiveStress) {  }
-
-    public override float BaseGravitate(float velocity, bool isGrounded)
+    public class PlayerGravitation : BaseGravitation
     {
-        return base.BaseGravitate(velocity, isGrounded);
+        public PlayerGravitation(float inspectGravityValue, float passiveStress)
+            : base(inspectGravityValue, passiveStress) {  }
     }
 }

@@ -1,36 +1,38 @@
 using System;
+using Core.Scripts.Player.Input;
 using UnityEngine;
 
-public class PlayerJumper : MonoBehaviour, IJumpable
+namespace Core.Scripts.Player.Movement
 {
-	[SerializeField] private float _jumpForce;
-	
-	private float playerLocalVelocity;
-	
-    private PlayerInput _playerInput;
-    private GroundedChecker _groundedChecker;
-	
-	public Action<float> OnPlayerJumped;
-
-	public void Awake()
+	public class PlayerJumper : MonoBehaviour
 	{
-        _playerInput = GetComponent<PlayerInput>();
-        _groundedChecker = GetComponent<GroundedChecker>();
-	}
+		[SerializeField] private float _jumpForce;
+	
+		private float _playerLocalVelocity;
+	
+		private PlayerInput _playerInput;
+		private GroundedChecker _groundedChecker;
+	
+		public Action<float> OnPlayerJumped;
 
-    // void OnEnable() => _playerInput.OnJumpInputted += Jump;
-    // void OnDisable() => _playerInput.OnJumpInputted -= Jump;
+		public void Awake()
+		{
+			_playerInput = GetComponent<PlayerInput>();
+			_groundedChecker = GetComponent<GroundedChecker>();
+		}
 
-    public float Jump()
-	{
-		if (_groundedChecker.IsGrounded == false)
-			throw new ArgumentException("Player must be on the ground before jumping.");
+		void OnEnable() => _playerInput.OnJumpInputted += Jump;
+		void OnDisable() => _playerInput.OnJumpInputted -= Jump;
+
+		private void Jump()
+		{
+			if (_groundedChecker.IsGrounded == false)
+				throw new ArgumentException("Player must be on the ground before jumping.");
 		
-		playerLocalVelocity = Mathf.Sqrt(-_jumpForce * -9.8f);
+			_playerLocalVelocity = Mathf.Sqrt(-_jumpForce * -9.8f);
 		
-		Debug.Log("Player was jumped " + playerLocalVelocity);
-		return playerLocalVelocity;
-		// OnPlayerJumped?.Invoke(playerLocalVelocity);
-		
+			Debug.Log("Player was jumped " + _playerLocalVelocity);
+			OnPlayerJumped?.Invoke(_playerLocalVelocity);
+		}
 	}
 }

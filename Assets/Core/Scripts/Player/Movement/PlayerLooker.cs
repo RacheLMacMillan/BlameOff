@@ -1,3 +1,4 @@
+using Core.Scripts.Player.Input;
 using UnityEngine;
 using UnityEngine.Rendering;
 

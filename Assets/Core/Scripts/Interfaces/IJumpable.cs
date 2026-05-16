@@ -1,4 +1,7 @@
-public interface IJumpable
+namespace Core.Scripts.Interfaces
 {
-    public float Jump();
+    public interface IJumpable
+    {
+        public float Jump();
+    }
 }

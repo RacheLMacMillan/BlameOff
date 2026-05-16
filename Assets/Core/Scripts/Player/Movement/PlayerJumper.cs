@@ -1,4 +1,5 @@
 using System;
+using Core.Scripts.Player.Checkers;
 using Core.Scripts.Player.Input;
 using UnityEngine;
 

@@ -1,9 +1,10 @@
 using System.Collections;
+using Core.Scripts.Player.Checkers;
+using Core.Scripts.Player.Gravitation;
 using Core.Scripts.Player.Input;
-using Core.Scripts.Player.Movement;
 using UnityEngine;
 
-namespace Core.Scripts.Player.Checkers
+namespace Core.Scripts.Player.Movement
 {
 	public class PlayerVelocityController : MonoBehaviour
 	{

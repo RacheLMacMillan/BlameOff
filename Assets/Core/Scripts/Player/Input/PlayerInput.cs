@@ -29,7 +29,8 @@ namespace Core.Scripts.Player.Input
         public Action OnInteractInputted;
 
         [Header("Values")] 
-        private Vector3 _moveInputDirection => ScaleDirection(_onFoot.Move.ReadValue<Vector2>());
+        private Vector3 ScaledMoveInputDirection => ScaleDirection(_onFoot.Move.ReadValue<Vector2>());
+        private Vector3 LookInputDirection => _onFoot.Look.ReadValue<Vector2>();
 
         [Header("Input map")]
         private InputMap _inputMap;
@@ -57,9 +58,9 @@ namespace Core.Scripts.Player.Input
         private void CheckForInput()
         {
             if (_onFoot.Move.ReadValue<Vector2>() != Vector2.zero)
-                OnMoveInputted?.Invoke(_moveInputDirection);
+                OnMoveInputted?.Invoke(ScaledMoveInputDirection);
             if (_onFoot.Look.ReadValue<Vector2>() != Vector2.zero)
-                OnLookInputted?.Invoke(_onFoot.Look.ReadValue<Vector2>());
+                OnLookInputted?.Invoke(LookInputDirection);
         }
     
         private void SetMovementAction()
@@ -91,7 +92,7 @@ namespace Core.Scripts.Player.Input
             _onFoot.Interact.performed += _ => OnInteractInputted?.Invoke();
         }
     
-        private Vector3 ScaleDirection(Vector2 direction)
+        private static Vector3 ScaleDirection(Vector2 direction)
         {
             return new Vector3(direction.x, 0, direction.y);
         }

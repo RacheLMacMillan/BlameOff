@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Core.Scripts.Player
 {
-	public class PlayerGravitationController : MonoBehaviour
+	public class PlayerVelocityController : MonoBehaviour
 	{
 		[Header("Player velocity")]
 		[SerializeField] private float _playerVelocity;
@@ -17,6 +17,9 @@ namespace Core.Scripts.Player
 	
 		[Header("Other values")]
 		[SerializeField, Range(0,1)] public float _waitForSecondBeforeGravitate;
+		
+		[Header("Debugging")]
+		[SerializeField] private bool _isDebugging;
 
 		private PlayerInput _playerInput;
 		private PlayerJumper _playerJumper;
@@ -55,7 +58,8 @@ namespace Core.Scripts.Player
     
 		private void Update()
 		{
-			Debug.Log(_groundedChecker.IsGrounded); 
+			if (_isDebugging)
+				Debug.Log(_groundedChecker.IsGrounded); 
     
 			if (!_isPlayerJumping)
 				_playerVelocity = _playerGravitation.BaseGravitate(_playerVelocity, _groundedChecker.IsGrounded);
@@ -75,15 +79,16 @@ namespace Core.Scripts.Player
 		{
 			_isPlayerJumping = true;
         
-			Debug.Log("Jumping true");
+			if (_isDebugging)
+				Debug.Log("Jumping true");
         
         
 			yield return new WaitForSeconds(_waitForSecondBeforeGravitate);
         
 			_isPlayerJumping = false;
-        
-			Debug.Log("Jumping false");
-        
+
+			if (_isDebugging)
+				Debug.Log("Jumping false");
 		}
 	}
 }

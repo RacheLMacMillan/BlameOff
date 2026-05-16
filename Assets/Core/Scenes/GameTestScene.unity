@@ -1151,6 +1151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMover
   _speed: 10
+  _isDebugging: 0
 --- !u!114 &1218046208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,6 +1235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJumper
   _jumpForce: 2
+  _isDebugging: 0
 --- !u!114 &1218046216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,12 +1260,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218046206}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffa4e813581d13a4a9dbc6e59f401dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpwardCollisionChecker
-  directionalThreshold: 0.9
+  _detectLayers:
+    serializedVersion: 2
+    m_Bits: 55
+  _position: {x: 0, y: 1.52, z: 0}
+  _radius: 0.5
 --- !u!114 &1218046218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,7 +1285,9 @@ MonoBehaviour:
   _playerVelocity: 0
   _inspectGravityValue: -9.81
   _passiveStress: -2
+  _afterUpwardHitVelocity: -2
   _waitForSecondBeforeGravitate: 0.2
+  _isDebugging: 0
 --- !u!1 &2078480250
 GameObject:
   m_ObjectHideFlags: 0

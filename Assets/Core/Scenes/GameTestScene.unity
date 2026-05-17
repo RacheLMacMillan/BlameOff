@@ -1314,8 +1314,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168ae0d9526292743a9d4db859a3fa52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Player.Movement.PlayerCrouch
-  CrouchHeight: 0.493
-  CrouchSpeed: 8
+  CrouchHeight: 0.6
+  CrouchSpeed: 10
 --- !u!1 &2078480250
 GameObject:
   m_ObjectHideFlags: 0

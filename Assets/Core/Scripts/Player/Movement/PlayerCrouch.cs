@@ -18,15 +18,8 @@ namespace Core.Scripts.Player.Movement
             _playerInput = GetComponent<PlayerInput>();
         }
 
-        private void OnEnable()
-        {
-            _playerInput.OnCrouchInputted += Crouch;
-        }
-
-        private void OnDisable()
-        {
-            _playerInput.OnCrouchInputted -= Crouch;
-        }
+        private void OnEnable() => _playerInput.OnCrouchInputted += Crouch;
+        private void OnDisable() => _playerInput.OnCrouchInputted -= Crouch;
 
         private void Crouch()
         {

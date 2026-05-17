@@ -1131,6 +1131,8 @@ GameObject:
   - component: {fileID: 1218046215}
   - component: {fileID: 1218046217}
   - component: {fileID: 1218046218}
+  - component: {fileID: 1218046220}
+  - component: {fileID: 1218046219}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -1288,6 +1290,32 @@ MonoBehaviour:
   _afterUpwardHitVelocity: -2
   _waitForSecondBeforeGravitate: 0.2
   _isDebugging: 0
+--- !u!114 &1218046219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218046206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d05d13735abb016448ff890ce69d6c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Player.PlayerCharacterHeightController
+--- !u!114 &1218046220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218046206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168ae0d9526292743a9d4db859a3fa52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Player.Movement.PlayerCrouch
+  CrouchHeight: 0.493
+  CrouchSpeed: 8
 --- !u!1 &2078480250
 GameObject:
   m_ObjectHideFlags: 0

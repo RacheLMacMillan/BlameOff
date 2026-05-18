@@ -210,7 +210,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1218046212}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -1180,7 +1180,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 931248034}
-  - {fileID: 330585546}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &1218046213
@@ -1314,8 +1313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 168ae0d9526292743a9d4db859a3fa52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Player.Movement.PlayerCrouch
-  CrouchHeight: 0.6
-  CrouchSpeed: 10
+  _crouchHeightMultiplier: 0.6
+  _crouchSpeedMultiplier: 5
 --- !u!1 &2078480250
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,6 +1411,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 330585546}
   - {fileID: 1218046212}
   - {fileID: 330699971}
   - {fileID: 635913351}

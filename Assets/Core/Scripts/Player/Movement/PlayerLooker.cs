@@ -9,6 +9,7 @@ namespace Core.Scripts.Player.Movement
 		[SerializeField] private float _sensitivityByY;
 		[SerializeField] private float _minVerticalRotation;
 		[SerializeField] private float _maxVerticalRotation;
+		
 		private PlayerInput _playerInput;
 		private Camera _camera;
 	
@@ -17,7 +18,7 @@ namespace Core.Scripts.Player.Movement
 		private void Awake()
 		{
 			_playerInput = GetComponent<PlayerInput>();
-			_camera = GetComponentInChildren<Camera>();
+			_camera = FindAnyObjectByType<Camera>();
 		}
 
 		private void OnEnable() => _playerInput.OnLookInputted += Look;

@@ -1,18 +1,15 @@
 using System;
-using Core.Scripts.Player.Movement;
 using UnityEngine;
+using Core.Scripts.Player.Movement;
 
 namespace Core.Scripts.Player
 {
     public class PlayerCharacterHeightController : MonoBehaviour
     {
-        public Action<bool> OnPlayerCrouched;
-        
         private CharacterController _characterController;
         private PlayerCrouch _playerCrouch;
-
-        public float Height => _characterController.height;
-        public Vector3 Center => _characterController.center;
+        
+        [SerializeField] private bool _isDebugging = false;
 
         private void Awake()
         {
@@ -20,8 +17,34 @@ namespace Core.Scripts.Player
             _playerCrouch = GetComponent<PlayerCrouch>();
         }
 
-        // private void OnEnable() => _playerCrouch.OnPlayerCrouched += SwitchCrouching;
-        // private void OnDisable() => _playerCrouch.OnPlayerCrouched -= SwitchCrouching;
+        private void OnEnable()
+        {
+            _playerCrouch.OnPlayerCrouched += ChangeToCrouch;
+            _playerCrouch.OnPlayerSandedUp += ChangeToStand;
+        }
 
+        private void OnDisable()
+        {
+            _playerCrouch.OnPlayerCrouched -= ChangeToCrouch;
+            _playerCrouch.OnPlayerSandedUp -= ChangeToStand;
+        }
+
+        private void ChangeToCrouch()
+        {
+            _characterController.height = _playerCrouch.CrouchingHeight;
+            _characterController.center = _playerCrouch.CrouchingCenter;
+
+            if (_isDebugging)
+                Debug.Log("Changed to crouch");
+        }
+        
+        private void ChangeToStand()
+        {
+            _characterController.height = _playerCrouch.StandHeight;
+            _characterController.center = _playerCrouch.StandCenter;
+
+            if (_isDebugging)
+                Debug.Log("Changed to stand");
+        }
     }
 }

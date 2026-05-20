@@ -30,7 +30,7 @@ namespace Core.Scripts.Player.Input
 
         [Header("Values")] 
         private Vector3 ScaledMoveInputDirection => ScaleDirection(_onFoot.Move.ReadValue<Vector2>());
-        private Vector3 LookInputDirection => _onFoot.Look.ReadValue<Vector2>();
+        private Vector2 LookInputDirection => _onFoot.Look.ReadValue<Vector2>();
 
         [Header("Input map")]
         private InputMap _inputMap;

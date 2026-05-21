@@ -14,8 +14,8 @@ namespace Core.Scripts.CameraScripts
             _playerLooker = GetComponentInParent<PlayerLooker>();
         }
 
-        private void OnEnable() => _playerLooker.PlayerLooked += FollowPlayerLook;
-        private void OnDisable() => _playerLooker.PlayerLooked -= FollowPlayerLook;
+        private void OnEnable() => _playerLooker.OnPlayerLooked += FollowPlayerLook;
+        private void OnDisable() => _playerLooker.OnPlayerLooked -= FollowPlayerLook;
         
         private void FollowPlayerLook(Vector3 playerLookedByX, Quaternion playerLookedByY)
         {

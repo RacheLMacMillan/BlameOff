@@ -11,7 +11,7 @@ namespace Core.Scripts.Player.Movement
 		[SerializeField] private float _minVerticalRotation;
 		[SerializeField] private float _maxVerticalRotation;
 		
-		public Action<Vector3, Quaternion> PlayerLooked;
+		public Action<Vector3, Quaternion> OnPlayerLooked;
 		
 		private PlayerInput _playerInput;
 	
@@ -33,12 +33,10 @@ namespace Core.Scripts.Player.Movement
 			_rotationByY -= (mouseByY * Time.deltaTime) * _sensitivityByY;
 			_rotationByY = Mathf.Clamp(_rotationByY, _minVerticalRotation, _maxVerticalRotation);
 			
-			Quaternion playerLookedByY = Quaternion.Euler(_rotationByY, 0, 0);
 			Vector3 playerLookedByX = Vector3.up * (mouseByX * Time.deltaTime) * _sensitivityByX;
+			Quaternion playerLookedByY = Quaternion.Euler(_rotationByY, 0, 0);
 			
-			transform.Rotate(playerLookedByX);
-			
-			PlayerLooked?.Invoke(playerLookedByX, playerLookedByY);
+			OnPlayerLooked?.Invoke(playerLookedByX, playerLookedByY);
 		}
 	}
 }

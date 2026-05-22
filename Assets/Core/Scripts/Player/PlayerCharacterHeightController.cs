@@ -7,6 +7,7 @@ namespace Core.Scripts.Player
     {
         private CharacterController _characterController;
         private PlayerCrouch _playerCrouch;
+        private PlayerLieDowner _playerLieDowner;
         
         [SerializeField] private bool _isDebugging = false;
 
@@ -14,18 +15,30 @@ namespace Core.Scripts.Player
         {
             _characterController = GetComponent<CharacterController>();
             _playerCrouch = GetComponent<PlayerCrouch>();
+            _playerLieDowner = GetComponent<PlayerLieDowner>();
         }
 
         private void OnEnable()
         {
             _playerCrouch.OnPlayerCrouched += ChangeToCrouch;
             _playerCrouch.OnPlayerSandedUp += ChangeToStand;
+            _playerLieDowner.OnPlayerLayDown += ChangeToLayingDown;
         }
 
         private void OnDisable()
         {
             _playerCrouch.OnPlayerCrouched -= ChangeToCrouch;
             _playerCrouch.OnPlayerSandedUp -= ChangeToStand;
+            _playerLieDowner.OnPlayerLayDown -= ChangeToLayingDown;
+        }
+
+        private void ChangeToLayingDown()
+        {
+            _characterController.height = _playerLieDowner.LayingHeight;
+            _characterController.center = _playerLieDowner.LayingCenter;
+
+            if (_isDebugging)
+                Debug.Log("Changed to laying down");
         }
 
         private void ChangeToCrouch()

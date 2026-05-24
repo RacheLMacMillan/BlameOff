@@ -1,4 +1,4 @@
-using System;
+using Core.Scripts.Player;
 using Core.Scripts.Player.Movement;
 using UnityEngine;
 
@@ -6,36 +6,43 @@ namespace Core.Scripts.CameraScripts
 {
     public class CameraFollower : MonoBehaviour
     {   
-        
         [SerializeField] private Vector3 _cameraOffset;
         [SerializeField] private Vector3 _playerStandingOffset;
         [SerializeField] private Vector3 _playerCrouchingOffset;
         [SerializeField] private Vector3 _playerLayingOffset;
-        
+
         [SerializeField] private PlayerLooker _playerLooker;
+        [SerializeField] private PlayerCharacterHeightController _playerCharacterHeightController;
         [SerializeField] private PlayerCrouch _playerCrouch;
+        [SerializeField] private PlayerLieDowner _playerLieDowner;
 
         [SerializeField] private bool _isDebugging;
         
         private void Awake()
         {
             _playerLooker = GetComponentInParent<PlayerLooker>();
+            
+            _playerCharacterHeightController = GetComponentInParent<PlayerCharacterHeightController>();
             _playerCrouch = GetComponentInParent<PlayerCrouch>();
+            _playerLieDowner = GetComponentInParent<PlayerLieDowner>();
         }
 
         private void OnEnable()
         {
             _playerLooker.OnPlayerLooked += FollowPlayerLook;
-            _playerCrouch.OnPlayerSandedUp += GetUpCamera;
+            
+            _playerCharacterHeightController.OnPlayerSandedUp += GetUpCamera;
             _playerCrouch.OnPlayerCrouched += GetDownCamera;
+            _playerLieDowner.OnPlayerLayDown += LieDownCamera;
         }
 
         private void OnDisable()
         {
             _playerLooker.OnPlayerLooked -= FollowPlayerLook;
-            _playerCrouch.OnPlayerSandedUp -= GetUpCamera;
-            _playerCrouch.OnPlayerCrouched -= GetDownCamera;
             
+            _playerCharacterHeightController.OnPlayerSandedUp -= GetUpCamera;
+            _playerCrouch.OnPlayerCrouched -= GetDownCamera;
+            _playerLieDowner.OnPlayerLayDown -= LieDownCamera;
         }
 
         private void Update()

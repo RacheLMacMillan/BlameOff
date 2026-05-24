@@ -4,23 +4,32 @@ namespace Core.Scripts.Gravitation
 {
 	public abstract class BaseGravitation
 	{
-		private float InspectGravityValue { get; set; }
-		private float PassiveStress { get; set; }
+		public float InspectGravityValue { get; private set; }
+		public float AdditionalInspectGravityValue { get; private set; }
+		public float PassiveStress  { get; private set; }
 
-		protected BaseGravitation(float inspectGravityValue, float passiveStress)
+		protected BaseGravitation(float inspectGravityValue, float additionalInspectGravityValue, float passiveStress)
 		{
 			InspectGravityValue = inspectGravityValue;
+			AdditionalInspectGravityValue = additionalInspectGravityValue;
 			PassiveStress = passiveStress;
+		}
+		
+		protected BaseGravitation()
+		{
+			InspectGravityValue = -10;
+			AdditionalInspectGravityValue = -15;
+			PassiveStress = -2;
 		}
 	
 		public virtual float BaseGravitate(float velocity, bool isGrounded)
 		{
-			velocity += InspectGravityValue * Time.deltaTime;
-		
-			if (isGrounded == true)
-			{
+			if (isGrounded)
 				velocity = PassiveStress;
-			}
+			else if (velocity > 0)
+				velocity += AdditionalInspectGravityValue * Time.deltaTime;
+			else
+				velocity += InspectGravityValue * Time.deltaTime;
 		
 			return velocity;
 		}

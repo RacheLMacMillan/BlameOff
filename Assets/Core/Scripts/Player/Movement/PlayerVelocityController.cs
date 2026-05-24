@@ -13,6 +13,7 @@ namespace Core.Scripts.Player.Movement
 
 		[Header("Gravity values")]
 		[SerializeField] private float _inspectGravityValue;
+		[SerializeField] private float _additionalInspectGravityValue;
 		[SerializeField] private float _passiveStress;
 		[SerializeField] private float _afterUpwardHitVelocity;
 	
@@ -54,7 +55,7 @@ namespace Core.Scripts.Player.Movement
 			_upwardCollisionChecker = GetComponent<UpwardCollisionChecker>();
 			_characterController = GetComponent<CharacterController>();
         
-			_playerGravitation = new PlayerGravitation(_inspectGravityValue, _passiveStress);
+			_playerGravitation = new PlayerGravitation(_inspectGravityValue, _additionalInspectGravityValue, _passiveStress);
 		}
     
 		private void Update()

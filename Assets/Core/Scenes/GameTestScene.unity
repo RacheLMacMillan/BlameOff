@@ -1258,10 +1258,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1218046212}
   - component: {fileID: 1218046213}
+  - component: {fileID: 1218046216}
+  - component: {fileID: 1218046224}
+  - component: {fileID: 1218046223}
   - component: {fileID: 1218046208}
   - component: {fileID: 1218046207}
   - component: {fileID: 1218046214}
-  - component: {fileID: 1218046216}
   - component: {fileID: 1218046215}
   - component: {fileID: 1218046217}
   - component: {fileID: 1218046218}
@@ -1486,6 +1488,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Player.Movement.PlayerLieDowner
   <LayingHeight>k__BackingField: 0.5
   <LayingCenter>k__BackingField: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1218046223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218046206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a55aa13d50198d488d45f62fe619628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Player.Checkers.IsAbleToCrouchChecker
+  _detectLayers:
+    serializedVersion: 2
+    m_Bits: 55
+  _checkingPosition: {x: 0, y: 1.5, z: 0}
+  _radius: 0.5
+--- !u!114 &1218046224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218046206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 156763ca9e064716be6050a15c3160b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Core.Scripts.Player.Checkers.IsAbleToStandUpChecker
+  _detectLayers:
+    serializedVersion: 2
+    m_Bits: 55
+  _checkingPosition: {x: 0, y: 1.13, z: 0}
+  _radius: 0.5
 --- !u!1 &2019143037
 GameObject:
   m_ObjectHideFlags: 0

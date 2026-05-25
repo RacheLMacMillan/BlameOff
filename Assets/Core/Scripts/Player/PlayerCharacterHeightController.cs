@@ -1,4 +1,5 @@
 using System;
+using Core.Scripts.Player.Checkers;
 using UnityEngine;
 using Core.Scripts.Player.Movement;
 
@@ -19,6 +20,7 @@ namespace Core.Scripts.Player
         private CharacterController _characterController;
         private PlayerCrouch _playerCrouch;
         private PlayerLieDowner _playerLieDowner;
+        private IsAbleToStandUpChecker _isAbleToStandUpChecker;
         
         [SerializeField] private bool _isDebugging = false;
 
@@ -27,6 +29,7 @@ namespace Core.Scripts.Player
             _characterController = GetComponent<CharacterController>();
             _playerCrouch = GetComponent<PlayerCrouch>();
             _playerLieDowner = GetComponent<PlayerLieDowner>();
+            _isAbleToStandUpChecker = GetComponent<IsAbleToStandUpChecker>();
         }
 
         private void OnEnable()
@@ -43,6 +46,9 @@ namespace Core.Scripts.Player
         
         private void ChangeToStand()
         {
+            if (!_isAbleToStandUpChecker.IsPlayerAbleToStandUp)
+                throw new ArgumentOutOfRangeException("Player isn't able to stand up");
+            
             IsStanding = true;
             IsCrouching = false;
             IsLayingDown = false;
@@ -54,25 +60,6 @@ namespace Core.Scripts.Player
 
             if (_isDebugging)
                 Debug.Log("Changed to stand");
-        }
-        
-        private void ChangeToLayingDown()
-        {
-            if (IsLayingDown)
-            {
-                ChangeToStand();
-                return;
-            }
-            
-            IsStanding = false;
-            IsCrouching = false;
-            IsLayingDown = true;
-            
-            _characterController.height = _playerLieDowner.LayingHeight;
-            _characterController.center = _playerLieDowner.LayingCenter;
-
-            if (_isDebugging)
-                Debug.Log("Changed to laying down");
         }
 
         private void ChangeToCrouch()
@@ -92,6 +79,25 @@ namespace Core.Scripts.Player
 
             if (_isDebugging)
                 Debug.Log("Changed to crouch");
+        }
+        
+        private void ChangeToLayingDown()
+        {
+            if (IsLayingDown)
+            {
+                ChangeToStand();
+                return;
+            }
+            
+            IsStanding = false;
+            IsCrouching = false;
+            IsLayingDown = true;
+            
+            _characterController.height = _playerLieDowner.LayingHeight;
+            _characterController.center = _playerLieDowner.LayingCenter;
+
+            if (_isDebugging)
+                Debug.Log("Changed to laying down");
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Core.Scripts.Player.Checkers
         
         private PlayerCharacterHeightController _playerCharacterHeightController;
         private PlayerCrouch  _playerCrouch;
-        private PlayerLieDowner _playerLieDowner;        
+        private PlayerLieDowner _playerLieDowner;
         
         private bool _isHitFromAbove;
         private bool _isDebugging;

@@ -1,6 +1,8 @@
 using System;
+using Core.Scripts.Player.Checkers;
 using UnityEngine;
 using Core.Scripts.Player.Input;
+using UnityEngine.Rendering.UI;
 
 namespace Core.Scripts.Player.Movement
 {
@@ -13,12 +15,14 @@ namespace Core.Scripts.Player.Movement
         public Action OnPlayerCrouched;
         
         private PlayerInput _playerInput;
+        private IsAbleToCrouchChecker _isAbleToCrouchChecker;
         
         [SerializeField] private bool _isDebugging = false;
         
         private void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
+            _isAbleToCrouchChecker = GetComponent<IsAbleToCrouchChecker>();
         }
 
         private void OnEnable() => _playerInput.OnCrouchInputted += Crouch;
@@ -26,7 +30,13 @@ namespace Core.Scripts.Player.Movement
 
         private void Crouch()
         {
+            if (_isAbleToCrouchChecker.IsPlayerAbleToCrouch == false)
+                throw new ArgumentOutOfRangeException("Player isn't able to crouch here");
+
             OnPlayerCrouched?.Invoke();
+            
+            if (_isDebugging)
+                Debug.Log("Player crouched");
         }
     }
 }

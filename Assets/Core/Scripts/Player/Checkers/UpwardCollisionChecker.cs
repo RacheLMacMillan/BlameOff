@@ -77,8 +77,11 @@ namespace Core.Scripts.Player.Checkers
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(ScalePosition(_position), _radius);
+            if (_isDebugging)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireSphere(ScalePosition(_position), _radius);
+            }
         }
     
         private Vector3 ScalePosition(Vector3 position)

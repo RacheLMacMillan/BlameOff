@@ -1393,6 +1393,7 @@ MonoBehaviour:
     m_Bits: 55
   _position: {x: 0, y: 0.495, z: 0}
   _radius: 0.5
+  _isDebugging: 0
 --- !u!114 &1218046217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,8 +1504,9 @@ MonoBehaviour:
   _detectLayers:
     serializedVersion: 2
     m_Bits: 55
-  _checkingPosition: {x: 0, y: 1.5, z: 0}
+  _checkingPosition: {x: 0, y: 1.1, z: 0}
   _radius: 0.5
+  _isDebugging: 0
 --- !u!114 &1218046224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1520,8 +1522,9 @@ MonoBehaviour:
   _detectLayers:
     serializedVersion: 2
     m_Bits: 55
-  _checkingPosition: {x: 0, y: 1.13, z: 0}
+  _checkingPosition: {x: 0, y: 1.5, z: 0}
   _radius: 0.5
+  _isDebugging: 0
 --- !u!1 &2019143037
 GameObject:
   m_ObjectHideFlags: 0

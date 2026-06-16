@@ -21,6 +21,8 @@ namespace Core.Scripts.Player
         private PlayerCrouch _playerCrouch;
         private PlayerLieDowner _playerLieDowner;
         private IsAbleToStandUpChecker _isAbleToStandUpChecker;
+
+        private PlayerJumper _playerJumper;
         
         [SerializeField] private bool _isDebugging = false;
 
@@ -30,18 +32,22 @@ namespace Core.Scripts.Player
             _playerCrouch = GetComponent<PlayerCrouch>();
             _playerLieDowner = GetComponent<PlayerLieDowner>();
             _isAbleToStandUpChecker = GetComponent<IsAbleToStandUpChecker>();
+            
+            _playerJumper = GetComponent<PlayerJumper>();
         }
 
         private void OnEnable()
         {
             _playerCrouch.OnPlayerCrouched += ChangeToCrouch;
             _playerLieDowner.OnPlayerLayDown += ChangeToLayingDown;
+            _playerJumper.OnPlayerNeedToStandUp += ChangeToStand;
         }
 
         private void OnDisable()
         {
             _playerCrouch.OnPlayerCrouched -= ChangeToCrouch;
             _playerLieDowner.OnPlayerLayDown -= ChangeToLayingDown;
+            _playerJumper.OnPlayerNeedToStandUp -= ChangeToStand;
         }
         
         private void ChangeToStand()

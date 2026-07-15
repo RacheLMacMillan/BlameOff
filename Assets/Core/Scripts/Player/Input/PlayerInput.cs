@@ -16,7 +16,7 @@ namespace Core.Scripts.Player.Input
           
         [Header("Weapon interactions")]
         public Action OnShootInputted;
-        public Action OnZoomInputted;
+        public Action OnAltShootInputted;
         public Action OnMeleeInputted;
         public Action OnReloadInputted;
         public Action OnCheckMagazineInputted;
@@ -75,7 +75,7 @@ namespace Core.Scripts.Player.Input
         private void SetWeaponInteraction()
         {
             _onFoot.Shoot.performed += _ => OnShootInputted?.Invoke();
-            _onFoot.Zoom.performed += _ => OnZoomInputted?.Invoke();
+            _onFoot.AltShoot.performed += _ => OnAltShootInputted?.Invoke();
             _onFoot.Melee.performed += _ => OnMeleeInputted?.Invoke();
             _onFoot.Reload.performed += _ => OnReloadInputted?.Invoke();
             _onFoot.Reload.canceled += _ => OnCheckMagazineInputted?.Invoke();

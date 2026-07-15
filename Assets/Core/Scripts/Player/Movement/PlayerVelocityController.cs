@@ -84,7 +84,6 @@ namespace Core.Scripts.Player.Movement
 			if (_isDebugging)
 				Debug.Log("Jumping true");
         
-        
 			yield return new WaitForSeconds(_waitForSecondBeforeGravitate);
         
 			_isPlayerJumping = false;

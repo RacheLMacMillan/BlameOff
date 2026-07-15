@@ -27,8 +27,8 @@ namespace Core.Scripts.Player.Movement
 			_playerCharacterHeightController = GetComponent<PlayerCharacterHeightController>();
 		}
 
-		void OnEnable() => _playerInput.OnJumpInputted += Jump;
-		void OnDisable() => _playerInput.OnJumpInputted -= Jump;
+		private void OnEnable() => _playerInput.OnJumpInputted += Jump;
+		private void OnDisable() => _playerInput.OnJumpInputted -= Jump;
 
 		private void Jump()
 		{
@@ -51,7 +51,6 @@ namespace Core.Scripts.Player.Movement
 				if (_isDebugging)
 					Debug.Log("Player didn't jumped, He needs to stand up");
 			}
-			
 		}
 	}
 }

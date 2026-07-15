@@ -10,13 +10,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22e43f45-8aa4-4779-8db6-29d9ceb1e864" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlameOff/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlameOff/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/GroundedChecker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/GroundedChecker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Input/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Input/PlayerInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerJumper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerJumper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerVelocityController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerVelocityController.cs" afterDir="false" />
-    </list>
+    <list default="true" id="22e43f45-8aa4-4779-8db6-29d9ceb1e864" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,7 +110,7 @@
       <workItem from="1781248129456" duration="893000" />
       <workItem from="1781584428547" duration="4432000" />
       <workItem from="1782820874072" duration="1695000" />
-      <workItem from="1784111571732" duration="4410000" />
+      <workItem from="1784111571732" duration="4601000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored">
       <option name="closed" value="true" />

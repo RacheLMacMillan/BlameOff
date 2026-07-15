@@ -1770,7 +1770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJumper
   _jumpForce: 2
-  _isDebugging: 0
+  _isDebugging: 1
 --- !u!114 &1218046216
 MonoBehaviour:
   m_ObjectHideFlags: 0

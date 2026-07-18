@@ -1968,8 +1968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cf3fbc4d11bb041b44ebf6cb70e9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Keypad
-  promptMessage: CubeCube
-  material: {fileID: 2100000, guid: 4b5b774cd6360334db9f794b76f8a090, type: 2}
+  promptMessage: Use Keypad
 --- !u!65 &1974639997
 BoxCollider:
   m_ObjectHideFlags: 0

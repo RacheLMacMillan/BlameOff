@@ -21,7 +21,12 @@ namespace Core.Scripts.Player.Movement
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo, _distance, _layerMask))
             {
+                Interactable interactable = hitInfo.collider.GetComponent<Interactable>();
                 
+                if (interactable != null)
+                {
+                    Debug.Log(interactable.promptMessage);
+                }
             }
         }
     }

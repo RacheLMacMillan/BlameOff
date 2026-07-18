@@ -12,7 +12,11 @@
   <component name="ChangeListManager">
     <list default="true" id="22e43f45-8aa4-4779-8db6-29d9ceb1e864" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BlameOff/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlameOff/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interaction/Interactable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Interaction/Interactable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerInteractor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/PlayerInteractor.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/PlayerInteractor.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +31,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerLieDowner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerRotator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Core/Scripts/Player/PlayerInteractor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Core/Scripts/Player/UI/PlayerUI.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -114,7 +119,7 @@
       <workItem from="1781584428547" duration="4432000" />
       <workItem from="1782820874072" duration="1695000" />
       <workItem from="1784111571732" duration="4601000" />
-      <workItem from="1784359744300" duration="1632000" />
+      <workItem from="1784359744300" duration="5390000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored">
       <option name="closed" value="true" />

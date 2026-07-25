@@ -11,8 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22e43f45-8aa4-4779-8db6-29d9ceb1e864" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerInteractor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerInteractor.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Genre/FPS/Scripts/Player/PlayerCharacterHeightController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Genre/FPS/Scripts/Player/PlayerCharacterHeightController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +25,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerInteractor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerLieDowner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerRotator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Core/Scripts/Player/PlayerInteractor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Core/Scripts/Player/UI/PlayerUI.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -47,7 +48,7 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;PlayerMovement&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;InteractionSystem&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -111,6 +112,10 @@
       <workItem from="1779259063509" duration="21454000" />
       <workItem from="1781248129456" duration="893000" />
       <workItem from="1781584428547" duration="4432000" />
+      <workItem from="1782820874072" duration="1695000" />
+      <workItem from="1784111571732" duration="4601000" />
+      <workItem from="1784359744300" duration="6460000" />
+      <workItem from="1784806386674" duration="3370000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored">
       <option name="closed" value="true" />

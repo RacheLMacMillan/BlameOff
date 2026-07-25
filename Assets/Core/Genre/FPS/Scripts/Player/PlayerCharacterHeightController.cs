@@ -10,8 +10,8 @@ namespace FPS
         [field: SerializeField] public Vector3 StandCenter { get; private set; }
 
         public Action OnPlayerSandedUp;
-        
-        public bool IsStanding { get; private set; }
+
+        public bool IsStanding { get; private set; } = true;
         public bool IsCrouching { get; private set; }
         public bool IsLayingDown { get; private set; }
         

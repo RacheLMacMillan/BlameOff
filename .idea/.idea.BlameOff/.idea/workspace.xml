@@ -11,104 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22e43f45-8aa4-4779-8db6-29d9ceb1e864" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlameOff/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlameOff/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scenes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scenes/GameTestScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scenes/GameTestScene.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/CameraScripts.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/CameraScripts/CameraFollower.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/CameraScripts/CameraFollower.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Gravitation.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Gravitation/BaseGravitation.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Gravitation/BaseGravitation.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interaction.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interaction/Interactable.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interaction/Interactable.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interaction/Interactables.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interaction/Interactables/Keypad.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interaction/Interactables/Keypad.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interfaces.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interfaces/IJumpable.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interfaces/IJumpable.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interfaces/IMoveable.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Interfaces/IMoveable.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/BaseSphereChecker.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/BaseSphereChecker.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/GroundedChecker.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/GroundedChecker.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/IsAbleToCrouchChecker.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/IsAbleToCrouchChecker.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/IsAbleToStandUpChecker.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/IsAbleToStandUpChecker.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/UpwardCollisionChecker.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Checkers/UpwardCollisionChecker.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Gravitation.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Gravitation/PlayerGravitation.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Gravitation/PlayerGravitation.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Input.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Input/PlayerInput.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Input/PlayerInput.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerCrouch.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerCrouch.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerInteractor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerInteractor.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerJumper.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerJumper.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerLieDowner.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerLieDowner.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerLooker.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerLooker.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerMover.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerMover.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerRotator.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerRotator.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerVelocityController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/Movement/PlayerVelocityController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/PlayerCharacterHeightController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/PlayerCharacterHeightController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/UI.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/UI/PlayerUI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Core/Scripts/Player/UI/PlayerUI.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Setup/TutorialInfo/Scripts/Editor/ReadmeEditor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Setup/TutorialInfo/Scripts/Editor/ReadmeEditor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Setup/TutorialInfo/Scripts/Readme.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Setup/TutorialInfo/Scripts/Readme.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01_UGUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark01_UGUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ChatController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ChatController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ObjectSpin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ObjectSpin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ShaderPropAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SimpleScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SimpleScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SkewTextExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/SkewTextExample.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_DigitValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_DigitValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_ExampleScript_01.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextInfoDebugTool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_A.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_A.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMPro_InstructionOverlay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMPro_InstructionOverlay.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextConsoleSimulator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextConsoleSimulator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshSpawner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshSpawner.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexColorCycler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexColorCycler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexZoom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/WarpTextExample.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Scripts/WarpTextExample.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Core/Genre/FPS/Scripts/Player/PlayerCharacterHeightController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Core/Genre/FPS/Scripts/Player/PlayerCharacterHeightController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +115,7 @@
       <workItem from="1782820874072" duration="1695000" />
       <workItem from="1784111571732" duration="4601000" />
       <workItem from="1784359744300" duration="6460000" />
-      <workItem from="1784806386674" duration="3025000" />
+      <workItem from="1784806386674" duration="3370000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored">
       <option name="closed" value="true" />
